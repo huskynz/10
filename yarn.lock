@@ -534,6 +534,11 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.21.5.tgz#acad351d582d157bb145535db2a6ff53dd514b5c"
   integrity sha512-tQd/1efJuzPC6rCFwEvLtci/xNFcTZknmXs98FYDfGE4wP9ClFV98nyKrzJKVPMhdDnjzLhdUyMX4PsQAPjwIw==
 
+"@formbricks/js@^2.1.1":
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/@formbricks/js/-/js-2.1.1.tgz#901fc6895233f174e4dc6e014a37d07406161fcd"
+  integrity sha512-qlQZyrKk42acvcqicnaMSwMh5ys+wQ4doQswHFR8SE/NbUvp8HGsK6MBDgnD07d9Tz+UhL4zrySUE5/p3taEGw==
+
 "@img/sharp-darwin-arm64@0.33.4":
   version "0.33.4"
   resolved "https://registry.yarnpkg.com/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.33.4.tgz#a1cf4a7febece334f16e0328b9689f05797d7aec"
