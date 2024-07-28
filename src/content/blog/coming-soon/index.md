@@ -4,6 +4,6 @@ summary: "My blog is coming soon"
 date: "Jul 27 2024"
 draft: false
 tags:
-- Comeing Soon
+- Coming Soon
 ---
 My blog is coming soon
