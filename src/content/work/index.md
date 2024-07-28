@@ -1,7 +1,10 @@
 ---
 title: "Work is Comeing Soon"
 summary: "Work is Comeing Soon"
-date: "Jul 28 2024"
+company: Comeing Soon
+role: Comeing Soon
+dateStart: "Jul 28 2024"
+dateEnd: "Jul 28 2024"
 draft: false
 tags:
 - Comeing Soon
