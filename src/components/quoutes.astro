@@ -4,21 +4,51 @@ const sentencesJSON = JSON.stringify(sentences);
 const intervalNumber = Number(interval);
 ---
 
-<div class="text-center p-4">
+<style>
+  .typewriter {
+    display: inline-block;
+    position: relative;
+    font-family: Atkinson; /* Ensures text and cursor alignment */
+  }
+
+  .cursor {
+    display: inline-block;
+    animation: blink 0.75s step-end infinite;
+    font-weight: bold;
+    color: currentColor; /* Matches cursor color with text color */
+    position: absolute;
+  }
+
+  @keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+</style>
+
+<div class="text-center p-4 animate">
   <h2 class="text-xl font-bold mb-4">Things People Have Said About Me</h2>
   <div
     id="rotating-text"
     data-sentences={sentencesJSON}
     data-interval={intervalNumber}
-    class="text mb-4"
+    class="text mb-4 typewriter relative"
   >
     {sentences[0]}
+    <span id="cursor" class="cursor"></span>
   </div>
 </div>
 
 <script type="text/javascript">
   document.addEventListener("DOMContentLoaded", function () {
     const rotatingTextElement = document.getElementById("rotating-text");
+    const cursorElement = document.getElementById("cursor");
     const sentences = JSON.parse(
       rotatingTextElement.getAttribute("data-sentences")
     );
@@ -31,11 +61,59 @@ const intervalNumber = Number(interval);
 
     let currentIndex = 0;
 
-    function rotateText() {
-      currentIndex = (currentIndex + 1) % sentences.length;
-      rotatingTextElement.textContent = sentences[currentIndex];
+    function calculateTypingSpeed(position, textLength) {
+      const midpoint = textLength / 2;
+      const distanceFromMidpoint = Math.abs(position - midpoint);
+      const speed = 50 + (distanceFromMidpoint / midpoint) * 150;
+      return Math.max(speed, 20);
     }
 
-    setInterval(rotateText, interval);
+    function typeWriter(text, position, callback) {
+      if (position < text.length) {
+        const speed = calculateTypingSpeed(position, text.length);
+        rotatingTextElement.innerHTML =
+          text.substring(0, position + 1) + '<span aria-hidden="true"></span>';
+
+        // Position the cursor right after the last character
+        cursorElement.style.left = `${rotatingTextElement.offsetWidth}px`;
+
+        position++;
+        setTimeout(function () {
+          typeWriter(text, position, callback);
+        }, speed);
+      } else if (typeof callback === "function") {
+        setTimeout(callback, 500);
+      }
+    }
+
+    function eraseText(callback) {
+      let position = rotatingTextElement.textContent.length;
+      function erase() {
+        if (position > 0) {
+          rotatingTextElement.innerHTML =
+            rotatingTextElement.textContent.substring(0, position - 1) +
+            '<span aria-hidden="true"></span>';
+
+          // Position the cursor right after the last character
+          cursorElement.style.left = `${rotatingTextElement.offsetWidth}px`;
+
+          position--;
+          setTimeout(erase, 30);
+        } else if (typeof callback === "function") {
+          setTimeout(callback, 500);
+        }
+      }
+      erase();
+    }
+
+    function rotateText() {
+      eraseText(function () {
+        currentIndex = (currentIndex + 1) % sentences.length;
+        typeWriter(sentences[currentIndex], 0, rotateText);
+      });
+    }
+
+    // Initialize with the first sentence
+    typeWriter(sentences[currentIndex], 0, rotateText);
   });
 </script>
