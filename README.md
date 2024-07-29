@@ -1,38 +1,48 @@
-# Tailwind Nextjs Starter Blog (work in progress)
+<br/>
+<p align="center">
+  <a href="https://github.com/HuskyNZ/10">
+    <img src="https://serv.hnz.li/logo/default.png" alt="Logo" width="80" height="80">
+  </a>
 
-Inspired by [tailwind-nextjs-starter-blog](https://github.com/timlrx/tailwind-nextjs-starter-blog)
+  <h3 align="center">HuskyNZ's Main Site</h3>
+  <br>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+</p>
 
-## Setup
+![Contributors](https://img.shields.io/github/contributors/HuskyNZ/10o?color=dark-green) ![Issues](https://img.shields.io/github/issues/HuskyNZ/10) ![License](https://img.shields.io/github/license/HuskyNZ/10)
 
-Make sure to install the dependencies:
+## About The Project
 
-```bash
-# npm
-npm install
-```
+This site is built in NextJS and is a site to learn who I am, Sometimes I break things sometimes I dont it depends on the day.
 
-## Development Server
+## Built With
 
-Start the development server on http://localhost:3000
+- [AstroJS](https://astro.build/)
+- [Tailwind](https://tailwindcss.com/)
+- [Cloudlfare](https://www.cloudflare.com/)
+- [Github](https://github.com/)
 
-```bash
-npm run dev
-```
+## Roadmap
 
-## Production
+Im working on getting content into the blog and projects
 
-Build the application for production:
+## Contributing
 
-```bash
-npm run build
-```
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-Locally preview production build:
+- If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/huskynz/10/issues/new) to discuss it, or directly create a pull request after you edit a file with necessary changes. I only accept incoming pull requests on the dev branch for my sanity
+- Please make sure you check your spelling and grammar.
+- Create individual PR for each suggestion.
 
-```bash
-npm run preview
-```
+## License
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Distributed under the MIT License. See [LICENSE](https://github.com/huskynz/10/blob/master/LICENSE) for more information.
+
+## Authors
+
+- [HuskyNZ](https://www.husky.nz)
+
+## Acknowledgements
+
+- [Cloudflare](https://cloudflare.com)
+- [markhorn-dev](https://github.com/markhorn-dev/astro-sphere)

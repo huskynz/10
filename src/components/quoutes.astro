@@ -1,0 +1,41 @@
+---
+const { sentences, interval } = Astro.props;
+const sentencesJSON = JSON.stringify(sentences);
+const intervalNumber = Number(interval);
+---
+
+<div class="text-center p-4">
+  <h2 class="text-xl font-bold mb-4">Things People Have Said About Me</h2>
+  <div
+    id="rotating-text"
+    data-sentences={sentencesJSON}
+    data-interval={intervalNumber}
+    class="text mb-4"
+  >
+    {sentences[0]}
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    const rotatingTextElement = document.getElementById("rotating-text");
+    const sentences = JSON.parse(
+      rotatingTextElement.getAttribute("data-sentences")
+    );
+    const interval = Number(rotatingTextElement.getAttribute("data-interval"));
+
+    if (!sentences || sentences.length === 0) {
+      console.error("No sentences provided");
+      return;
+    }
+
+    let currentIndex = 0;
+
+    function rotateText() {
+      currentIndex = (currentIndex + 1) % sentences.length;
+      rotatingTextElement.textContent = sentences[currentIndex];
+    }
+
+    setInterval(rotateText, interval);
+  });
+</script>
