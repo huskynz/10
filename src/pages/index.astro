@@ -5,6 +5,18 @@ import ArrowCard from "@components/ArrowCard"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
+import QuotesCycler from "@components/quoutes.astro"
+
+const sentences = [
+  "Husk quests to be the best server architect of their generation and won't stop until they reach the top.",
+  "Husk is forever seeking new and innovative solutions for every tech scenario.",
+  "Don't miss our upcoming events.",
+  "Husk is like a dog with a bone when it comes to building excellent solutions for every server need..",
+  "I'm no good at (insert random hobby/sport/etc here) so I decided to be amazing at server solutions instead.",
+  "I'm no good at Scrabble so I excel at server architecture and IT solutions instead",
+];
+
+const interval = 3000; // Change sentences every 3000ms (3 seconds)
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -42,7 +54,7 @@ const projects = (await getCollection("projects"))
   </div>
 
   <script is:inline src="/js/bg.js"></script>
-  
+
   <!-- HERO -->
   <section class="relative h-screen w-full">
     <div id="planetcont" class='animate absolute inset-0 top-1/4 overflow-hidden'>
@@ -87,6 +99,9 @@ const projects = (await getCollection("projects"))
           <p>Hi, Im Peter currently a UNI student who has a passion in tech I have been learning for the last 3 years (coming up on 4), I have gained alot of skills but my primary skill set is Microsoft and Cloudflare products however I can and do know how to work with AWS, GCP, DataDog, Linux Servers, and I'm still learning and growing my skill set. I have gained 2 Microsoft certs the AZ-904 and MS-904 both fundamental certs and I have been learning web tech aswell along the way (Im not a designer).</p>
         </article>
       </section>
+
+      <QuotesCycler sentences={sentences} interval={interval}/>
+
 
       <!-- Blog Preview Section -->
       <section class="animate">
