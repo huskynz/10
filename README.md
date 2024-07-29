@@ -1,89 +1,48 @@
-![Astro Sphere Lighthouse Score](_astrosphere.jpg)
+<br/>
+<p align="center">
+  <a href="https://github.com/HuskyNZ/10">
+    <img src="https://serv.hnz.li/logo/default.png" alt="Logo" width="80" height="80">
+  </a>
 
-Astro Sphere is a static, minimalist, lightweight, lightning fast portfolio and blog theme based on my personal website.
+  <h3 align="center">HuskyNZ's Main Site</h3>
+  <br>
 
-It is primarily Astro, Tailwind and Typescript, with a very small amount of SolidJS for stateful components.
+</p>
 
-## 🚀 Deploy your own
+![Contributors](https://img.shields.io/github/contributors/HuskyNZ/10o?color=dark-green) ![Issues](https://img.shields.io/github/issues/HuskyNZ/10) ![License](https://img.shields.io/github/license/HuskyNZ/10)
 
-[![Deploy with Vercel](_deploy_vercel.svg)](https://vercel.com/new/clone?repository-url=https://github.com/markhorn-dev/astro-sphere)  [![Deploy with Netlify](_deploy_netlify.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/markhorn-dev/astro-sphere)
+## About The Project
 
-## 📋 Features
+This site is built in NextJS and is a site to learn who I am, Sometimes I break things sometimes I dont it depends on the day.
 
-- ✅ 100/100 Lighthouse performance
-- ✅ Responsive
-- ✅ Accessible
-- ✅ SEO-friendly
-- ✅ Typesafe
-- ✅ Minimal style
-- ✅ Light/Dark Theme
-- ✅ Animated UI
-- ✅ Tailwind styling
-- ✅ Auto generated sitemap
-- ✅ Auto generated RSS Feed
-- ✅ Markdown support
-- ✅ MDX Support (components in your markdown)
-- ✅ Searchable content (posts and projects)
+## Built With
 
-## 💯 Lighthouse score
-![Astro Sphere Lighthouse Score](_lighthouse.png)
+- [AstroJS](https://astro.build/)
+- [Tailwind](https://tailwindcss.com/)
+- [Cloudlfare](https://www.cloudflare.com/)
+- [Github](https://github.com/)
 
-## 🕊️ Lightweight
-All pages under 100kb (including fonts)
+## Roadmap
 
-## ⚡︎ Fast
-Rendered in ~40ms on localhost
+Im working on getting content into the blog and projects
 
-## 📄 Configuration
+## Contributing
 
-The blog posts on the demo serve as the documentation and configuration.
+Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-## 💻 Commands
+- If you have suggestions for adding or removing projects, feel free to [open an issue](https://github.com/huskynz/10/issues/new) to discuss it, or directly create a pull request after you edit a file with necessary changes. I only accept incoming pull requests on the dev branch for my sanity
+- Please make sure you check your spelling and grammar.
+- Create individual PR for each suggestion.
 
-All commands are run from the root of the project, from a terminal:
+## License
 
-Replace npm with your package manager of choice. `npm`, `pnpm`, `yarn`, `bun`, etc
+Distributed under the MIT License. See [LICENSE](https://github.com/huskynz/10/blob/master/LICENSE) for more information.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run dev:network`     | Starts dev server on local network               |
-| `npm run sync`            | Generates TypeScript types for all Astro modules.|
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run preview:network` | Starts preview server on local network           |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-| `npm run lint`            | Run ESLint                                       |
-| `npm run lint:fix`        | Auto-fix ESLint issues                           |
+## Authors
 
-## 🗺️ Roadmap
+- [HuskyNZ](https://www.husky.nz)
 
-A few features I plan to implement
-- ⬜ Code Blocks - copy to clipboard
-- ⬜ Article Pages - Table of Contents
-- ⬜ Article Pages - Share on social media
+## Acknowledgements
 
-## ✨ Acknowledgement
-
-Theme inspired by [Paco Coursey](https://paco.me/), [Lee Robinson](https://leerob.io/) and [Hayden Bleasel](https://www.haydenbleasel.com/)
-
-
-## 🏛️ License
-
-MIT
-
-
-# 1.0.1 Update
-
-Added ability to run dev and preview on local network.
-added npm run dev:network
-added npm run preview:network
-
-Added slightly more particle density in both light and dark mode.
-
-Added subtle dark mode star and meteor animations.
-
-Removed eslint config
-
+- [Cloudflare](https://cloudflare.com)
+- [markhorn-dev](https://github.com/markhorn-dev/astro-sphere)
