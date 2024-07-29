@@ -13,7 +13,7 @@
 
 ## About The Project
 
-This site is built in NextJS and is a site to learn who I am, Sometimes I break things sometimes I dont it depends on the day.
+This site is built in AstroJS and is the new main site for HuskyNZ where I can share what I know and about who I am
 
 ## Built With
 
