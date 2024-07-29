@@ -49,7 +49,7 @@ export default {
           "50%": { 
             opacity: 1  
           },
-          "100%": { 
+          "100%": {
             opacity: 0, 
             transform: "translateY(0)" 
           },
@@ -57,5 +57,5 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [require("@tailwindcss/typography","tailwind-typewriter")],
 }
