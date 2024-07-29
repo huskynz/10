@@ -15,7 +15,7 @@ const sentences = [
   "I'm no good at Scrabble so I excel at server architecture and IT solutions instead",
 ];
 
-const interval = 3000; // Change sentences every 3000ms (3 seconds)
+const interval = 4000; // Change sentences every 3000ms (3 seconds)
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -70,10 +70,10 @@ const projects = (await getCollection("projects"))
             Hi!
           </p>
           <p class='animated text-2xl md:text-3xl lg:text-4xl font-bold uppercase text-black dark:text-white'>
-            Im peter
+           I'm Peter
           </p>
           <p class='animated text-sm md:text-base lg:text-lg opacity-75'>
-
+            A Solutions Architect
           </p>
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
             <a href='/blog' class='py-2 px-4 rounded truncate text-xs md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
@@ -94,8 +94,8 @@ const projects = (await getCollection("projects"))
       <!-- About Section -->
       <section class="animate">
         <article>
-          <img src="https://serv.hnz.li/public/peter.png" width="180" height="180" alt="ME" class="object-center"/>
-          <p>Hi, I'm Peter, currently a university student with a passion for tech. I have been learning for the last three years (coming up on four). I have gained a lot of skills, but my primary skill set is with Microsoft and Cloudflare products. However, I also know how to work with AWS, GCP, DataDog, and Linux servers, and I'm still learning and expanding my skill set. I have earned two Microsoft certifications: AZ-904 and MS-900, both of which are fundamental. Additionally, I have been learning web technology along the way (though I'm not a designer).</p>
+          <img src="https://serv.hnz.li/public/peter.png" width="180" height="180" alt="ME" class=""/>
+          <p>Hi, I'm Peter, currently a university student with a passion for tech. I have been learning for the last three years (coming up on four). I have gained a lot of skills, but my primary expertise is with Microsoft and Cloudflare products. However, I also know how to work with AWS, GCP, DataDog, and Linux servers, and I'm still learning and expanding my skill set. I have earned two Microsoft certifications: AZ-904 and MS-900, both of which are fundamental. Additionally, I have been learning web technology along the way (though I'm not a designer). I also stream on Twitch for fun.</p>
         </article>
       </section>
 
