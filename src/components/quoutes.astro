@@ -1,25 +1,19 @@
 ---
-const { sentences, interval } = Astro.props;
-const sentencesJSON = JSON.stringify(sentences);
-const intervalNumber = Number(interval);
+const sentences = [
+  "Husk quests to be the best server architect of their generation and won't stop until they reach the top.",
+  "Husk is forever seeking new and innovative solutions for every tech scenario.",
+  "Husk is like a dog with a bone when it comes to building excellent solutions for every server need.",
+  "I'm no good at (insert random hobby/sport/etc here) so I decided to be amazing at server solutions instead.",
+  "I'm no good at Scrabble so I excel at server architecture and IT solutions instead",
+  "Peter is whatever",
+];
 ---
 
 <style>
-  .typewriter {
-    display: inline-block;
-    position: relative;
-    font-family: Atkinson; /* Ensures text and cursor alignment */
+  .flash {
+    animation: flash 1s infinite;
   }
-
-  .cursor {
-    display: inline-block;
-    animation: blink 0.75s step-end infinite;
-    font-weight: bold;
-    color: currentColor; /* Matches cursor color with text color */
-    position: absolute;
-  }
-
-  @keyframes blink {
+  @keyframes flash {
     0% {
       opacity: 1;
     }
@@ -30,90 +24,145 @@ const intervalNumber = Number(interval);
       opacity: 1;
     }
   }
+  .glow {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  .animate-fade-right {
+    animation: fade-right 1s forwards;
+  }
+  @keyframes fade-right {
+    from {
+      opacity: 0;
+      transform: translateX(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  .invisible {
+    visibility: hidden;
+  }
+  .subheading {
+    font-size: 2rem; /* Adjust this size as needed */
+  }
+  .headst {
+    font-size: 3rem;
+  }
 </style>
 
-<div class="text-center p-4 animate">
-  <h2 class="text-xl font-bold mb-4">Things People Have Said About Me</h2>
+<div id="quoutes" class="text-center h-screen flex">
   <div
-    id="rotating-text"
-    data-sentences={sentencesJSON}
-    data-interval={intervalNumber}
-    class="text mb-4 typewriter relative"
+    class="py-8 px-4 m-auto max-w-screen-xl text-center lg:py-16 z-10 relative"
   >
-    {sentences[0]}
-    <span id="cursor" class="cursor"></span>
+    <h2
+      class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl dark:text-white"
+    >
+      What people have to say about me?
+    </h2>
+    <p
+      id="titleText"
+      class="mb-4 subheading font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl dark:text-white inline-block transition-all glow"
+    >
+    </p>
+    <p
+      id="cursor"
+      class="mb-4 subheading font-extrabold tracking-tight leading-none text-gray-900 md:text-4xl lg:text-5xl dark:text-white inline-block flash"
+    >
+      |
+    </p>
+    <p
+      id="subHeading"
+      class="mb-8 text-lg font-normal lg:text-xl sm:px-16 lg:px-48 invisible"
+    >
+    </p>
   </div>
 </div>
 
-<script type="text/javascript">
-  document.addEventListener("DOMContentLoaded", function () {
-    const rotatingTextElement = document.getElementById("rotating-text");
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const titleElement = document.getElementById("titleText");
     const cursorElement = document.getElementById("cursor");
-    const sentences = JSON.parse(
-      rotatingTextElement.getAttribute("data-sentences")
-    );
-    const interval = Number(rotatingTextElement.getAttribute("data-interval"));
+    const subHeadingElement = document.getElementById("subHeading");
 
-    if (!sentences || sentences.length === 0) {
-      console.error("No sentences provided");
+    if (!titleElement || !cursorElement || !subHeadingElement) {
+      console.error("One or more elements not found in the DOM.");
       return;
     }
 
-    let currentIndex = 0;
+    const sentences = [
+      "Husk quests to be the best server architect of their generation and won't stop until they reach the top.",
+      "Husk is forever seeking new and innovative solutions for every tech scenario.",
+      "Husk is like a dog with a bone when it comes to building excellent solutions for every server need.",
+      "I'm no good at (insert random hobby/sport/etc here) so I decided to be amazing at server solutions instead.",
+      "I'm no good at Scrabble so I excel at server architecture and IT solutions instead",
+      "Peter is whatever",
+    ];
 
-    function calculateTypingSpeed(position, textLength) {
-      const midpoint = textLength / 2;
-      const distanceFromMidpoint = Math.abs(position - midpoint);
-      const speed = 50 + (distanceFromMidpoint / midpoint) * 150;
-      return Math.max(speed, 20);
-    }
+    let currentSentenceIndex = 0;
 
-    function typeWriter(text, position, callback) {
-      if (position < text.length) {
-        const speed = calculateTypingSpeed(position, text.length);
-        rotatingTextElement.innerHTML =
-          text.substring(0, position + 1) + '<span aria-hidden="true"></span>';
-
-        // Position the cursor right after the last character
-        cursorElement.style.left = `${rotatingTextElement.offsetWidth}px`;
-
-        position++;
-        setTimeout(function () {
-          typeWriter(text, position, callback);
-        }, speed);
-      } else if (typeof callback === "function") {
-        setTimeout(callback, 500);
-      }
-    }
-
-    function eraseText(callback) {
-      let position = rotatingTextElement.textContent.length;
-      function erase() {
-        if (position > 0) {
-          rotatingTextElement.innerHTML =
-            rotatingTextElement.textContent.substring(0, position - 1) +
-            '<span aria-hidden="true"></span>';
-
-          // Position the cursor right after the last character
-          cursorElement.style.left = `${rotatingTextElement.offsetWidth}px`;
-
-          position--;
-          setTimeout(erase, 30);
-        } else if (typeof callback === "function") {
-          setTimeout(callback, 500);
+    function type(text, callback) {
+      let typedText = "";
+      let i = 0;
+      const interval = setInterval(() => {
+        typedText += text[i];
+        titleElement.innerText = typedText;
+        if (i === text.length - 1) {
+          clearInterval(interval);
+          cursorElement.classList.remove("flash");
+          setTimeout(() => {
+            subHeadingElement.classList.remove("invisible");
+            subHeadingElement.classList.add("animate-fade-right");
+            if (callback) callback();
+          }, 500);
         }
-      }
-      erase();
+        i++;
+      }, 80);
     }
 
-    function rotateText() {
-      eraseText(function () {
-        currentIndex = (currentIndex + 1) % sentences.length;
-        typeWriter(sentences[currentIndex], 0, rotateText);
+    function backspace(callback) {
+      let text = titleElement.innerText;
+      const interval = setInterval(() => {
+        text = text.slice(0, -1);
+        titleElement.innerText = text;
+        if (text.length === 0) {
+          clearInterval(interval);
+          cursorElement.classList.add("flash");
+          if (callback) callback();
+        }
+      }, 50);
+    }
+
+    function cycleSentences() {
+      type(sentences[currentSentenceIndex], () => {
+        setTimeout(() => {
+          backspace(() => {
+            subHeadingElement.classList.add("invisible");
+            currentSentenceIndex =
+              (currentSentenceIndex + 1) % sentences.length;
+            setTimeout(cycleSentences, 500); // Wait before typing the next sentence
+          });
+        }, 2000); // Wait before clearing the text
       });
     }
 
-    // Initialize with the first sentence
-    typeWriter(sentences[currentIndex], 0, rotateText);
+    function handleScroll() {
+      const position =
+        window.pageYOffset ||
+        document.documentElement.scrollTop ||
+        document.body.scrollTop;
+      if (position > 400) {
+        cursorElement.style.display = "none";
+        window.removeEventListener("scroll", handleScroll);
+        subHeadingElement.classList.remove("invisible");
+        subHeadingElement.classList.add("animate-fade-right");
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll);
+
+    setTimeout(() => {
+      cycleSentences();
+    }, 1000);
   });
 </script>
