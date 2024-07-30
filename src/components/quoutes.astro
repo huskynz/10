@@ -80,89 +80,90 @@ const sentences = [
 </div>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const titleElement = document.getElementById("titleText");
-    const cursorElement = document.getElementById("cursor");
-    const subHeadingElement = document.getElementById("subHeading");
+ document.addEventListener("DOMContentLoaded", () => {
+  const titleElement = document.getElementById("titleText");
+  const cursorElement = document.getElementById("cursor");
+  const subHeadingElement = document.getElementById("subHeading");
 
-    if (!titleElement || !cursorElement || !subHeadingElement) {
-      console.error("One or more elements not found in the DOM.");
-      return;
-    }
+  if (!titleElement || !cursorElement || !subHeadingElement) {
+    console.error("One or more elements not found in the DOM.");
+    return;
+  }
 
-    const sentences = [
-      "Husk quests to be the best server architect of their generation and won't stop until they reach the top.",
-      "Husk is forever seeking new and innovative solutions for every tech scenario.",
-      "Husk is like a dog with a bone when it comes to building excellent solutions for every server need.",
-      "I'm no good at (insert random hobby/sport/etc here) so I decided to be amazing at server solutions instead.",
-      "I'm no good at Scrabble so I excel at server architecture and IT solutions instead",
-      "Peter is whatever",
-    ];
+  const sentences = [
+    "Husk quests to be the best server architect of their generation and won't stop until they reach the top.",
+    "Husk is forever seeking new and innovative solutions for every tech scenario.",
+    "Husk is like a dog with a bone when it comes to building excellent solutions for every server need.",
+    "I'm no good at (insert random hobby/sport/etc here) so I decided to be amazing at server solutions instead.",
+    "I'm no good at Scrabble so I excel at server architecture and IT solutions instead",
+    "Peter is whatever",
+  ];
 
-    let currentSentenceIndex = 0;
+  let currentSentenceIndex = 0;
 
-    function type(text, callback) {
-      let typedText = "";
-      let i = 0;
-      const interval = setInterval(() => {
-        typedText += text[i];
-        titleElement.innerText = typedText;
-        if (i === text.length - 1) {
-          clearInterval(interval);
-          cursorElement.classList.remove("flash");
-          setTimeout(() => {
-            subHeadingElement.classList.remove("invisible");
-            subHeadingElement.classList.add("animate-fade-right");
-            if (callback) callback();
-          }, 500);
-        }
-        i++;
-      }, 80);
-    }
-
-    function backspace(callback) {
-      let text = titleElement.innerText;
-      const interval = setInterval(() => {
-        text = text.slice(0, -1);
-        titleElement.innerText = text;
-        if (text.length === 0) {
-          clearInterval(interval);
-          cursorElement.classList.add("flash");
-          if (callback) callback();
-        }
-      }, 50);
-    }
-
-    function cycleSentences() {
-      type(sentences[currentSentenceIndex], () => {
+  function type(text: string, callback?: () => void): void {
+    let typedText = "";
+    let i = 0;
+    const interval = setInterval(() => {
+      typedText += text[i];
+      titleElement!.innerText = typedText; // Non-null assertion
+      if (i === text.length - 1) {
+        clearInterval(interval);
+        cursorElement!.classList.remove("flash"); // Non-null assertion
         setTimeout(() => {
-          backspace(() => {
-            subHeadingElement.classList.add("invisible");
-            currentSentenceIndex =
-              (currentSentenceIndex + 1) % sentences.length;
-            setTimeout(cycleSentences, 500); // Wait before typing the next sentence
-          });
-        }, 2000); // Wait before clearing the text
-      });
-    }
-
-    function handleScroll() {
-      const position =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop;
-      if (position > 400) {
-        cursorElement.style.display = "none";
-        window.removeEventListener("scroll", handleScroll);
-        subHeadingElement.classList.remove("invisible");
-        subHeadingElement.classList.add("animate-fade-right");
+          subHeadingElement!.classList.remove("invisible"); // Non-null assertion
+          subHeadingElement!.classList.add("animate-fade-right"); // Non-null assertion
+          if (callback) callback();
+        }, 500);
       }
+      i++;
+    }, 80);
+  }
+
+  function backspace(callback?: () => void): void {
+    let text = titleElement!.innerText; // Non-null assertion
+    const interval = setInterval(() => {
+      text = text.slice(0, -1);
+      titleElement!.innerText = text; // Non-null assertion
+      if (text.length === 0) {
+        clearInterval(interval);
+        cursorElement!.classList.add("flash"); // Non-null assertion
+        if (callback) callback();
+      }
+    }, 50);
+  }
+
+  function cycleSentences(): void {
+    type(sentences[currentSentenceIndex], () => {
+      setTimeout(() => {
+        backspace(() => {
+          subHeadingElement!.classList.add("invisible"); // Non-null assertion
+          currentSentenceIndex =
+            (currentSentenceIndex + 1) % sentences.length;
+          setTimeout(cycleSentences, 500); // Wait before typing the next sentence
+        });
+      }, 2000); // Wait before clearing the text
+    });
+  }
+
+  function handleScroll(): void {
+    const position =
+      window.scrollY || // Updated to window.scrollY
+      document.documentElement.scrollTop ||
+      document.body.scrollTop;
+    if (position > 400) {
+      cursorElement!.style.display = "none"; // Non-null assertion
+      window.removeEventListener("scroll", handleScroll);
+      subHeadingElement!.classList.remove("invisible"); // Non-null assertion
+      subHeadingElement!.classList.add("animate-fade-right"); // Non-null assertion
     }
+  }
 
-    window.addEventListener("scroll", handleScroll);
+  window.addEventListener("scroll", handleScroll);
 
-    setTimeout(() => {
-      cycleSentences();
-    }, 1000);
-  });
+  setTimeout(() => {
+    cycleSentences();
+  }, 1000);
+});
+
 </script>
