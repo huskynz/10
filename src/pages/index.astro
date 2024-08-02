@@ -6,6 +6,7 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Quoutes from "@components/quoutes.astro"
+import Contact from "@components/Contact.astro"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -89,6 +90,7 @@ const projects = (await getCollection("projects"))
         </article>
 
       </section>
+
       <!-- Blog Preview Section -->
       <section class="animate">
         <div class="space-y-4">
@@ -121,6 +123,7 @@ const projects = (await getCollection("projects"))
           <p>
             Reach out to me via email or on social media.
           </p>
+          <!-- <Contact /> -->
           <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
             {SOCIALS.map(social => (
               <div class="col-span-1 flex items-center gap-1">
