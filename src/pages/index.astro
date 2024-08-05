@@ -6,7 +6,6 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Quoutes from "@components/quoutes.astro"
-import Contact from "@components/Contact.astro"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
