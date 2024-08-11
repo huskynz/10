@@ -9,7 +9,7 @@
 
 </p>
 
-![Contributors](https://img.shields.io/github/contributors/HuskyNZ/10o?color=dark-green) ![Issues](https://img.shields.io/github/issues/HuskyNZ/10) ![License](https://img.shields.io/github/license/HuskyNZ/10) [![Netlify Status](https://api.netlify.com/api/v1/badges/ef5c3182-ef99-4e67-860d-21fa579ff4ed/deploy-status)](https://app.netlify.com/sites/huskynz/deploys?branch=master)
+![Contributors](https://img.shields.io/github/contributors/HuskyNZ/10?color=dark-green) ![Issues](https://img.shields.io/github/issues/HuskyNZ/10) ![License](https://img.shields.io/github/license/HuskyNZ/10) [![Netlify Status](https://api.netlify.com/api/v1/badges/ef5c3182-ef99-4e67-860d-21fa579ff4ed/deploy-status)](https://app.netlify.com/sites/huskynz/deploys?branch=master)
 
 ## About The Project
 
