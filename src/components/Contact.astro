@@ -1,11 +1,11 @@
-<form action="/actions/send-email" method="post">
-  <div>
-    <label for="send-email__subject">Subject:</label>
-    <input type="text" name="subject" id="send-email__subject" required />
-  </div>
-  <div>
-    <label for="send-email__message">Message:</label>
-    <textarea name="message" id="send-email__message" required></textarea>
-  </div>
-  <input type="submit" value="Send message" />
+<form name="contact" netlify>
+  <p>
+    <label>Name <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Email <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
 </form>

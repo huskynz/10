@@ -6,6 +6,7 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Quoutes from "@components/quoutes.astro"
+import Contact from "@components/Contact.astro"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -113,6 +114,7 @@ const projects = (await getCollection("projects"))
         </div>
       </section>
       <Quoutes/>
+      <Contact/>
       <!-- Contact Section -->
       <section class="animate">
         <div>
