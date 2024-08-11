@@ -1,7 +1,9 @@
 ---
 import { predefinedUrls } from "@lib/rurl"
-const { location } = Astro.params; // Get the dynamic route parameter
-const redirectUrl = predefinedUrls[location] || '/';
+const { location } = Astro.params as { location?: string }; // Get the dynamic route parameter
+const redirectUrl = location === 'go'
+  ? '/'
+  : predefinedUrls[location as keyof typeof predefinedUrls] || '/';
 
 // Perform the redirection
 return new Response(null, {
