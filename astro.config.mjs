@@ -10,6 +10,7 @@ import sentry from "@sentry/astro";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.husky.nz",
+  output: "server",
   integrations: [react(), mdx(), sitemap(), solidJs(), tailwind({
     applyBaseStyles: false
   }), sentry({
