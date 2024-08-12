@@ -6,12 +6,13 @@
     "dev": "astro dev",
     "dev:network": "astro dev --host",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "astro check && astro build && yarn sentry:sourcemaps",
     "preview": "deno run --allow-net --allow-read --allow-env ./dist/server/entry.mjs",
     "preview:network": "astro dev --host",
     "astro": "astro",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "sentry:sourcemaps": "sentry-cli sourcemaps inject --org huskynz --project javascript ./dist && sentry-cli sourcemaps upload --org huskynz --project javascript ./dist"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.6",
@@ -24,6 +25,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@formbricks/js": "^2.1.1",
     "@sentry/astro": "^8.20.0",
+    "@sentry/cli": "^2.33.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/nodemailer": "^6.4.15",
     "astro": "^4.4.13",
@@ -31,8 +33,6 @@
     "fuse.js": "^7.0.0",
     "install": "^0.13.0",
     "nodemailer": "^6.9.14",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
     "resend": "^3.5.0",
     "sharp": "^0.33.2",
     "solid-js": "^1.8.15",
