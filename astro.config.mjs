@@ -4,8 +4,9 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import solidJs from "@astrojs/solid-js";
 import sentry from "@sentry/astro";
-
 import netlify from "@astrojs/netlify";
+
+import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
@@ -23,5 +24,8 @@ export default defineConfig({
     tracePropagationTargets: ["localhost", /^https:\/www\/.husky.nz\/.nz\/api/],
     profilesSampleRate: 1.0
   })],
-  adapter: netlify()
+  adapter:netlify(),
+  adapter: node({
+    mode: "standalone"
+  })
 });

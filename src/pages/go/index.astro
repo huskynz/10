@@ -1,9 +1,21 @@
 ---
+import { URL } from 'url';
+import { predefinedUrls } from '@lib/rurl'; // Import your predefined URLs
+
+// Get the full URL
+const url = new URL(Astro.request.url);
+
+// Extract the `linkid` query parameter
+const linkid = url.searchParams.get('linkid') ?? ''; // Provide a default value of empty string
+
+// Find the correct link or provide a default
+const targetUrl = predefinedUrls[linkid as keyof typeof predefinedUrls] || '/';  // Default to home if no valid linkid is found
+
 // Perform the redirection
 return new Response(null, {
     status: 302,
     headers: {
-      Location: "/",
+      Location: targetUrl,
     }})
 ---
 
@@ -13,6 +25,7 @@ return new Response(null, {
   <title>Redirecting...</title>
 </head>
 <body>
-  <p>Redirecting to / due to no url enterd</p>
+  <p>Redirecting you...</p>
 </body>
 </html>
+
