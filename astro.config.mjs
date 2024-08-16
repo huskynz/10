@@ -24,7 +24,7 @@ export default defineConfig({
     tracePropagationTargets: ["localhost", /^https:\/www\/.husky.nz\/.nz\/api/],
     profilesSampleRate: 1.0
   })],
-  adapter:netlify(),
+  adapter: netlify(),
   adapter: node({
     mode: "standalone"
   })
