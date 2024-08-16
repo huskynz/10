@@ -26,6 +26,6 @@ export default defineConfig({
   })],
   adapter: netlify(),
   adapter: node({
-    mode: "standalone"
+    mode: "middleware"
   })
 });
