@@ -12,7 +12,6 @@ RUN yarn install
 
 FROM build-deps AS build
 COPY . .
-RUN export SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN}}
 RUN sentry-cli login 
 RUN yarn run build
 RUN ls -la /dist/server
