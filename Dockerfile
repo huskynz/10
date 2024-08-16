@@ -12,7 +12,8 @@ RUN yarn install
 
 FROM build-deps AS build
 COPY . .
-RUN sentry-cli login 
+RUN yarn add @sentry/cli
+RUN ./node_modules/.bin/sentry-cli login 
 RUN yarn run build
 RUN ls -la /dist/server
 
