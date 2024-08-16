@@ -1,6 +1,5 @@
 FROM node:lts AS base
 WORKDIR /
-
 # By copying only the package.json and package-lock.json here, we ensure that the following `-deps` steps are independent of the source code.
 # Therefore, the `-deps` steps will be skipped if only the source code changes.
 COPY yarn.lock package.json ./
