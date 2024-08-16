@@ -1,4 +1,3 @@
-dockerfile
 FROM node:lts AS base
 WORKDIR /
 
