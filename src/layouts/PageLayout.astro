@@ -6,13 +6,13 @@ import Footer from "@components/Footer.astro";
 import Drawer from "@components/Drawer.astro";
 const { title, description } = Astro.props;
 import { SITE } from "@consts";
-import Formbricks from "@components/formbricks.astro";
+import Feedback from "@components/feedback.astro";
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
-    <Formbricks />
+    <Feedback />
     <BaseHead title={`${title} | ${SITE.TITLE}`} description={description} />
   </head>
   <body>

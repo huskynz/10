@@ -1,0 +1,23 @@
+<script>
+import * as Sentry from "@sentry/astro";
+
+Sentry.init({
+  dsn: "https://4859ca7cbd7b4c1a9acb12755d7a4b21@o1267611.ingest.us.sentry.io/6454168",
+
+  integrations: [
+    
+    Sentry.feedbackIntegration({
+      // Additional SDK configuration goes in here, for example:
+      colorScheme: "system",
+      id: "SFeedback",
+      showBranding: "false",
+      enableScreenshot: "false",
+      formTitle: "Give Feed Back",
+      submitButtonLabel: "Submit Feed Back",
+      triggerLabel: "Feed Back"
+    }),
+  ],
+});
+</script>
+
+<div id="SFeedback"></div>
