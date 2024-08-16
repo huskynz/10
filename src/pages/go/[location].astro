@@ -1,15 +1,9 @@
 ---
-import { predefinedUrls } from "@lib/rurl"
-const { location } = Astro.params as { location?: string }; // Get the dynamic route parameter
-const redirectUrl = location === 'go'
-  ? '/'
-  : predefinedUrls[location as keyof typeof predefinedUrls] || '/';
-
 // Perform the redirection
 return new Response(null, {
     status: 302,
     headers: {
-      Location: redirectUrl,
+      Location: "/",
     }})
 ---
 
@@ -19,6 +13,7 @@ return new Response(null, {
   <title>Redirecting...</title>
 </head>
 <body>
-  <p>Redirecting to <a href={redirectUrl}>{redirectUrl}</a>...</p>
+  <p>Redirecting to / due to no url enterd</p>
 </body>
 </html>
+
