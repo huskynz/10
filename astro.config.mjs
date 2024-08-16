@@ -6,7 +6,6 @@ import solidJs from "@astrojs/solid-js";
 import sentry from "@sentry/astro";
 import netlify from "@astrojs/netlify";
 
-import node from "@astrojs/node";
 
 // https://astro.build/config
 export default defineConfig({
@@ -25,7 +24,4 @@ export default defineConfig({
     profilesSampleRate: 1.0
   })],
   adapter: netlify(),
-  adapter: node({
-    mode: "middleware"
-  })
 });
