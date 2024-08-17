@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  app:
+    image: ghcr.io/huskynz/10:master
+    container_name: huskynz_msite
+    ports:
+      - "4321:4321"
+    networks:
+      - app-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - app
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
