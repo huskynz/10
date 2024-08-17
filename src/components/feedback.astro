@@ -20,7 +20,9 @@ Sentry.init({
       messagePlaceholder: "Place your feedback here. How could I improve the site. What do you like?",
       emailPlaceholder: "something@something.something"
     }),
+    Sentry.browserTracingIntegration()
   ],
+  tracePropagationTargets: ["localhost", /^https:\/www\/\/husky\.nz\//],
 });
 </script>
 
