@@ -1,0 +1,53 @@
+---
+import { BlobServiceClient, StorageSharedKeyCredential, generateBlobSASQueryParameters, ContainerSASPermissions } from '@azure/storage-blob';
+import PageLayout from "@layouts/PageLayout.astro";
+import { SITE } from "@consts";
+
+// Fetch environment variables
+const accountName = import.meta.env.AZURE_STORAGE_ACCOUNT_NAME;
+const accountKey = import.meta.env.AZURE_STORAGE_ACCOUNT_KEY;
+const containerName = import.meta.env.AZURE_STORAGE_CONTAINER_NAME;
+
+// Function to generate SAS token
+async function generateSasToken() {
+  const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+  const blobServiceClient = new BlobServiceClient(
+    `https://${accountName}.blob.core.windows.net`,
+    sharedKeyCredential
+  );
+
+  const sasOptions = {
+    containerName,
+    permissions: ContainerSASPermissions.parse('r'), // Read permission
+    startsOn: new Date(),
+    expiresOn: new Date(new Date().valueOf() + 3600 * 1000), // 1 hour from now
+  };
+
+  const sasToken = generateBlobSASQueryParameters(sasOptions, sharedKeyCredential).toString();
+  return sasToken;
+}
+
+// Generate SAS token
+const sasToken = await generateSasToken();
+
+const downloads = [
+  { name: 'Dignation S1', path: 'DigNationS1.zip' }
+];
+---
+
+<PageLayout title="Downloads" description={SITE.DESCRIPTION}>
+  <!-- Downloads Section -->
+  <section class="relative bg-white dark:bg-black py-16">
+    <div class="mx-auto max-w-screen-md p-5 space-y-6">
+      <h2 class="text-2xl font-semibold text-black dark:text-white">Available Downloads</h2>
+      <ul class="space-y-4">
+        {downloads.map((download) => (
+          <li class="animate bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow flex justify-between items-center">
+            <span class="text-black dark:text-white font-medium">{download.name}</span>
+            <a href={`https://${accountName}.blob.core.windows.net/${containerName}/${download.path}?${sasToken}`} class="py-2 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded">Download</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+</PageLayout>
