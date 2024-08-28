@@ -8,14 +8,15 @@
         "src/*"
       ]
     },
-    "jsx": "preserve",
-    "jsxImportSource": "solid-js"
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "src/**/*.astro"
-, "src/components/quoutes.jsx"  ],
+    "src/**/*.astro",
+    "src/components/quoutes.jsx"
+  ],
   "exclude": [
     "dist",
     "node_modules"
