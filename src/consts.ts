@@ -7,6 +7,11 @@ export const SITE: Site = {
   AUTHOR: "Peter Gallwas",
 }
 
+export const WORK: Page = {
+  TITLE: "Blog",
+  DESCRIPTION: "Writing on topics I am passionate about.",
+}
+
 // Blog Page
 export const BLOG: Page = {
   TITLE: "Blog",

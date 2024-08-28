@@ -42,7 +42,7 @@ const downloads = [
       <h2 class="text-2xl font-semibold text-black dark:text-white">Available Downloads</h2>
       <ul class="space-y-4">
         {downloads.map((download) => (
-          <li key={download.path} class="animate bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow flex justify-between items-center">
+          <li class="animate bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow flex justify-between items-center">
             <span class="text-black dark:text-white font-medium">{download.name}</span>
             <a href={`https://${accountName}.blob.core.windows.net/${containerName}/${download.path}?${sasToken}`} class="py-2 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded">Download</a>
           </li>

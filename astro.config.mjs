@@ -6,14 +6,12 @@ import solidJs from "@astrojs/solid-js";
 import netlify from "@astrojs/netlify";
 import sentry from "@sentry/astro";
 
-import react from "@astrojs/react";
-
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.husky.nz",
   output: "server",
   integrations: [mdx(), sitemap(), solidJs(), tailwind({
     applyBaseStyles: false
-  }), sentry(), react()],
+  }), sentry(),],
   adapter: netlify()
 });
