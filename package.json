@@ -24,6 +24,7 @@
     "@astrojs/sitemap": "^3.1.1",
     "@astrojs/solid-js": "^4.0.1",
     "@astrojs/tailwind": "^5.1.0",
+    "@azure/storage-blob": "^12.24.0",
     "@formbricks/js": "^2.1.1",
     "@sentry/astro": "^8.26.0",
     "@sentry/cli": "^2.33.1",

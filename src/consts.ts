@@ -7,12 +7,6 @@ export const SITE: Site = {
   AUTHOR: "Peter Gallwas",
 }
 
-// Work Page
-export const WORK: Page = {
-  TITLE: "Work",
-  DESCRIPTION: "Places I have worked.",
-}
-
 // Blog Page
 export const BLOG: Page = {
   TITLE: "Blog",
@@ -31,6 +25,10 @@ export const SEARCH: Page = {
   DESCRIPTION: "Search all posts and projects by keyword.",
 }
 
+export const DOWNLOADS: Page = {
+  TITLE: "Downloads",
+  DESCRIPTION: "Download some sutff from HuskyNZ",
+}
 // Links
 export const LINKS: Links = [
   { 
@@ -44,6 +42,10 @@ export const LINKS: Links = [
   { 
     TEXT: "Projects", 
     HREF: "/projects", 
+  },
+  { 
+    TEXT: "Downloads", 
+    HREF: "/download", 
   },
 ]
 
