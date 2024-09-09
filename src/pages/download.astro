@@ -31,7 +31,8 @@ async function generateSasToken() {
 const sasToken = await generateSasToken();
 
 const downloads = [
-  { name: 'Dignation S1', path: 'DigNationS1.zip' }
+  { name: 'Dignation S1', path: 'DigNationS1.zip', requiresPassword: true },
+  { name: 'HuskyNZ Brand Pack (Logos and stuff)', path: 'default.png', requiresPassword: false }
 ];
 ---
 
@@ -44,10 +45,31 @@ const downloads = [
         {downloads.map((download) => (
           <li class="animate bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow flex justify-between items-center">
             <span class="text-black dark:text-white font-medium">{download.name}</span>
-            <a href={`https://${accountName}.blob.core.windows.net/${containerName}/${download.path}?${sasToken}`} class="py-2 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded">Download</a>
+            <button 
+              class="py-2 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded"
+              on:click={() => handleDownload(download)}
+            >
+              Download
+            </button>
           </li>
         ))}
       </ul>
     </div>
   </section>
+
+  <script>
+    function handleDownload(download) {
+      // Only ask for a password if the download requires it
+      if (download.requiresPassword) {
+        const password = prompt("Enter the password to download this file:");
+        if (password !== "your_password_here") {  // Replace with your actual password
+          alert("Incorrect password.");
+          return;  // Do not proceed if the password is incorrect
+        }
+      }
+
+      // Redirect to the actual download link
+      window.location.href = `https://${accountName}.blob.core.windows.net/${containerName}/${download.path}?${sasToken}`;
+    }
+  </script>
 </PageLayout>

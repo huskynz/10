@@ -3,26 +3,57 @@ import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
 import TopLayout from "@layouts/TopLayout.astro"
 import BottomLayout from "@layouts/BottomLayout.astro"
-import Projects from "@components/Projects"
 import { PROJECTS } from "@consts"
 
-const projects = (await getCollection("projects"))
-  .filter(project => !project.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+const collection = await getCollection("projects")
 
-const tags = [...new Set(projects.flatMap(project => project.data.tags))]
-  .sort((a, b) => a.localeCompare(b))
+collection.sort((a, b) => new Date(b.data.dateStart).getTime() - new Date(a.data.dateStart).getTime())
+
+const projects = await Promise.all(
+  collection.map(async (item) => {
+    const { Content } = await item.render()
+    return { ...item, Content }
+  })
+)
+
+function formatPROJECTSDate(input: Date | string) {
+  if (typeof input === "string") return input
+
+  const month = input.toLocaleDateString("en-US", {
+    month: "short",
+  })
+
+  const year = new Date(input).getFullYear()
+  return `${month} ${year}`
+}
 ---
 
-<PageLayout title={PROJECTS.TITLE} description={PROJECTS.DESCRIPTION}>
+<PageLayout title=Projects description={PROJECTS.DESCRIPTION}>
   <TopLayout>
     <div class="animate page-heading">
       {PROJECTS.TITLE}
     </div>
   </TopLayout>
   <BottomLayout>
-    <div class="animate">
-      <Projects client:load tags={tags} data={projects} />
-    </div>
+    <ul>
+      {
+        PROJECTS.map((entry) => (
+          <li class="animate border-b border-black/10 dark:border-white/25 mt-4 py-8 first-of-type:mt-0 first-of-type:pt-0 last-of-type:border-none">
+            <div class="text-sm uppercase mb-4">
+              {formatPROJECTSDate(entry.data.dateStart)} - {formatPROJECTSDate(entry.data.dateEnd)}
+            </div>
+            <div class="text-black dark:text-white font-semibold">
+              {entry.data.company}
+            </div>
+            <div class="text-sm font-semibold">
+              {entry.data.role}
+            </div>
+            <article class="prose dark:prose-invert">
+              <entry.Content />
+            </article>
+          </li>
+        ))
+      }
+    </ul>
   </BottomLayout>
 </PageLayout>
