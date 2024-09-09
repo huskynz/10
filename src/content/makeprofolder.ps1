@@ -26,25 +26,11 @@ $projectsData = @(
         link = "https://huskynz-my.sharepoint.com/:w:/g/personal/peter_husky_nz/EZbs4uc5tRhKvlEcg0QsVQoBjYfiTc0paqqb1F451mHzDw?e=vmRii7"
     },
     @{
-        title = "Spectrum's Website"
-        summary = "This is a very fun project to watch grow and I had the fun task of building the Website and running it on Cloudflare. I also help with a lot of backend stuff."
-        date = "Jul 28 2024"
-        tags = @("Astro", "JSX", "Cloudflare")
-        link = "https://spectrum.liamsherwin.tech"
-    },
-    @{
         title = "Yoobee Cyber Security Micro-credential"
         summary = "I learnt a lot from this course."
         date = "Jul 28 2024"
         tags = @("Year 2023", "Basic compute", "Kali Linux")
         link = "https://landing.husky.nz"
-    },
-    @{
-        title = "Rolleston College Film Club"
-        summary = "I worked with two other developers on building a website for our film club to help people get to know who we are."
-        date = "Jul 28 2024"
-        tags = @("Year 2023", "Astro", "Tailwind", "CSS")
-        link = "https://filmclub.tech"
     },
     @{
         title = "HuskyNZ Weather"
