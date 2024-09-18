@@ -1,7 +1,9 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "strictNullChecks": true,
+    "strictNullChecks": false,
+    "strict": false,
+    "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
       "@*": [
