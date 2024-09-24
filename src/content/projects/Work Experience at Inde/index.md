@@ -12,4 +12,4 @@ tags:
 
 [Learn more](https://inde.nz)
 
-![Project Image](https://serv.hnz.li/peter-port/200813-0073.webp)
+![Project Image](https://serv.husky.nz/peter-port/200813-0073.webp)

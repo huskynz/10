@@ -13,4 +13,4 @@ tags:
 
 [Learn more](https://landing.husky.nz)
 
-![Project Image](https://serv.serv.hnz.li/peter-port/Screenshot_20231020_153931.png)
+![Project Image](https://serv.husky.nz/peter-port/Screenshot_20231020_153931.png)

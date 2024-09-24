@@ -9,6 +9,6 @@ tags:
 
 ---
 
-[Learn more](https://github.com/huskynz/6)
+[Learn more](https://landing.husky.nz)
 
-![Project Image](https://serv.serv.hnz.li/peter-port/Screenshot_20231020_185537.png)
+![Project Image](https://serv.husky.nz/peter-port/Screenshot_20231020_185537.png)

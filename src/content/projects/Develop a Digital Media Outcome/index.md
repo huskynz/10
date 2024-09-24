@@ -11,4 +11,4 @@ tags:
 
 [Learn more](https://huskynz-my.sharepoint.com/:w:/g/personal/peter_husky_nz/EZbs4uc5tRhKvlEcg0QsVQoBjYfiTc0paqqb1F451mHzDw?e=vmRii7)
 
-![Project Image](https://serv.hnz.li/peter-port/Screenshot_20231108_101413.png)
+![Project Image](https://serv.husky.nz/peter-port/Screenshot_20231108_101413.png)

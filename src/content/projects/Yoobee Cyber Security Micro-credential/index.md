@@ -10,4 +10,6 @@ tags:
 
 ---
 
-![Project Image](https://serv.hnz.li/peter-port/yoobe.png)
+[Learn more](https://landing.husky.nz)
+
+![Project Image](https://serv.husky.nz/peter-port/yoobe.png)
