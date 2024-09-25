@@ -1,0 +1,27 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { SITE } from "@consts";
+---
+
+<PageLayout title="404 - Page Not Found" description={SITE.DESCRIPTION}>
+  <!-- 404 Page Not Found Section -->
+  <section class="relative bg-white dark:bg-black py-16">
+    <div class="mx-auto max-w-screen-md p-5 space-y-6 text-center">
+      <h1 class="text-5xl font-bold text-red-500">
+        404
+      </h1>
+      <h2 class="text-2xl font-semibold text-black dark:text-white">
+        Oops! Page Not Found
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-300">
+        The page you're looking for doesn't exist or has been moved.
+      </p>
+      <a
+        href="/"
+        class="py-3 px-6 bg-white hover:bg-gray-200 text-black border border-black rounded inline-block"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+</PageLayout>
