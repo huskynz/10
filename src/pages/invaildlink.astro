@@ -1,0 +1,43 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { SITE } from "@consts";
+
+// Get the query parameter for the invalid link name
+const { searchParams } = Astro.url;
+const linkName = searchParams.get('name');
+
+// Define a whitelist of allowed URLs
+const allowedLinks = ['/panel','/w7su'];
+
+// Check if the provided link name is in the allowed list
+const isValidLink = allowedLinks.includes(linkName);
+---
+
+<PageLayout title={isValidLink ? "Link Not Valid" : "Invalid Link"} description={SITE.DESCRIPTION}>
+  <!-- Invalid Link Section -->
+  <section class="relative bg-white dark:bg-black py-16">
+    <div class="mx-auto max-w-screen-md p-5 space-y-6 text-center">
+      <h1 class="text-4xl font-bold text-black dark:text-white">
+        {isValidLink ? "Link Not Valid" : "Invalid Link"}
+      </h1>
+      {isValidLink ? (
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          The link <span class="font-bold text-red-500">{linkName}</span> you tried to access is no longer valid or expired.
+        </p>
+      ) : (
+        <p class="text-lg text-gray-600 dark:text-gray-300">
+          The link you tried to access is not valid. Only specific URLs are allowed.
+        </p>
+      )}
+      <p class="text-md text-gray-600 dark:text-gray-400">
+        This could be because you spelled it wrong or the link has been depracated
+      </p>
+      <a
+        href="/"
+        class="py-3 px-6 bg-blue-600 hover:bg-blue-500 text-white rounded inline-block"
+      >
+        Back to Home
+      </a>
+    </div>
+  </section>
+</PageLayout>
