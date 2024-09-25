@@ -1,5 +1,10 @@
 ---
-import { BlobServiceClient, StorageSharedKeyCredential, generateBlobSASQueryParameters, ContainerSASPermissions } from '@azure/storage-blob';
+import {
+  BlobServiceClient,
+  StorageSharedKeyCredential,
+  generateBlobSASQueryParameters,
+  ContainerSASPermissions,
+} from "@azure/storage-blob";
 import PageLayout from "@layouts/PageLayout.astro";
 import { SITE } from "@consts";
 
@@ -10,29 +15,33 @@ const containerName = import.meta.env.AZURE_STORAGE_CONTAINER_NAME;
 
 // Function to generate SAS token
 async function generateSasToken() {
-  const sharedKeyCredential = new StorageSharedKeyCredential(accountName, accountKey);
+  const sharedKeyCredential = new StorageSharedKeyCredential(
+    accountName,
+    accountKey
+  );
   const blobServiceClient = new BlobServiceClient(
     `https://${accountName}.blob.core.windows.net`,
     sharedKeyCredential
   );
-
   const sasOptions = {
     containerName,
-    permissions: ContainerSASPermissions.parse('r'), // Read permission
+    permissions: ContainerSASPermissions.parse("r"), // Read permission
     startsOn: new Date(),
     expiresOn: new Date(new Date().valueOf() + 3600 * 1000), // 1 hour from now
   };
-
-  const sasToken = generateBlobSASQueryParameters(sasOptions, sharedKeyCredential).toString();
+  const sasToken = generateBlobSASQueryParameters(
+    sasOptions,
+    sharedKeyCredential
+  ).toString();
   return sasToken;
 }
 
-// Generate SAS token
+// Generate the SAS token
 const sasToken = await generateSasToken();
 
+// Downloads array
 const downloads = [
-  { name: 'Dignation S1', path: 'DigNationS1.zip', requiresPassword: true },
-  { name: 'HuskyNZ Brand Pack (Logos and stuff)', path: 'default.png', requiresPassword: false }
+  { name: "Dignation S1", path: "DigNationS1.zip" }
 ];
 ---
 
@@ -40,36 +49,26 @@ const downloads = [
   <!-- Downloads Section -->
   <section class="relative bg-white dark:bg-black py-16">
     <div class="mx-auto max-w-screen-md p-5 space-y-6">
-      <h2 class="text-2xl font-semibold text-black dark:text-white">Available Downloads</h2>
+      <h2 class="text-2xl font-semibold text-black dark:text-white">
+        Available Downloads
+      </h2>
       <ul class="space-y-4">
-        {downloads.map((download) => (
-          <li class="animate bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow flex justify-between items-center">
-            <span class="text-black dark:text-white font-medium">{download.name}</span>
-            <button 
-              class="py-2 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded"
-              on:click={() => handleDownload(download)}
-            >
-              Download
-            </button>
-          </li>
-        ))}
+        {
+          downloads.map((download) => (
+            <li class="animate bg-gray-100 dark:bg-gray-800 p-4 rounded-md shadow flex justify-between items-center">
+              <span class="text-black dark:text-white font-medium">
+                {download.name}
+              </span>
+              <a
+                href={`https://${accountName}.blob.core.windows.net/${containerName}/${download.path}?${sasToken}`}
+                class="py-2 px-4 bg-blue-600 hover:bg-blue-500 text-white rounded"
+              >
+                Download
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </section>
-
-  <script>
-    function handleDownload(download) {
-      // Only ask for a password if the download requires it
-      if (download.requiresPassword) {
-        const password = prompt("Enter the password to download this file:");
-        if (password !== "your_password_here") {  // Replace with your actual password
-          alert("Incorrect password.");
-          return;  // Do not proceed if the password is incorrect
-        }
-      }
-
-      // Redirect to the actual download link
-      window.location.href = `https://${accountName}.blob.core.windows.net/${containerName}/${download.path}?${sasToken}`;
-    }
-  </script>
 </PageLayout>
