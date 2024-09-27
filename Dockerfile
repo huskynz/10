@@ -1,6 +1,5 @@
-FROM node:lts AS base
+FROM node:lts-bookworm-slim AS base
 WORKDIR /
-LABEL org.opencontainers.image.description "This is a docker build of HuskyNZs main site design to make it easyer to deploy the site on any random server"
 
 # By copying only the package.json and package-lock.json here, we ensure that the following `-deps` steps are independent of the source code.
 # Therefore, the `-deps` steps will be skipped if only the source code changes.
