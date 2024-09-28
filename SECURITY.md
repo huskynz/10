@@ -2,14 +2,17 @@
 
 ## Supported Versions
 
-Versions 6 and 10 of HuskyNZ's main site are "Supported" this inculdes the docker containers for both
+Version 10 of HuskyNZ's main site are "Supported" this inculdes the docker containers for 10
+
+[!WARNING]
+Ver 6 is not fully supported but is still may be updated if needed.
 
 Now why do we have this? Because why not
 
 | Version | Supported          |
 | ------- | ------------------ |
 | 10  | :white_check_mark: |
-| 6   | :white_check_mark: |
+| 6   | [!WARNING] |
 | < 3   | :x:                |
 
 ## Reporting a Vulnerability
