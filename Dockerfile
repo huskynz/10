@@ -13,9 +13,6 @@ COPY . .
 # Rename astro.config.mjs.docker to astro.config.mjs
 RUN mv astro.config.mjs.docker astro.config.mjs
 
-# Accept the SENTRY_AUTH_TOKEN as a build argument
-ARG SENTRY_AUTH_TOKEN
-
 RUN yarn run build
 RUN ls -la /dist/server
 
