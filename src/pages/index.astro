@@ -6,6 +6,7 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Quoutes from "@components/quoutes.astro"
+import Twitch from "@components/TwitchEmbed.astro"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -90,6 +91,10 @@ const projects = (await getCollection("projects"))
 
       </section>
 
+      <!-- Twitch Embed, Displays message when offline -->
+      <section class="animate">
+      <Twitch />
+      </section>
       <!-- Blog Preview Section -->
       <section class="animate">
         <div class="space-y-4">

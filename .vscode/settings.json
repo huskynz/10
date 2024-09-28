@@ -1,5 +1,6 @@
 {
   "[astro]": {
     "editor.defaultFormatter": "astro-build.astro-vscode"
-  }
+  },
+  "azureAutomation.directory.basePath": "c:\\Users\\peter"
 }
