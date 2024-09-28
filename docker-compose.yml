@@ -1,28 +1,26 @@
+version: '3.8'
 
 services:
   website:
-    image: ghcr.io/huskynz/10:master
+    image: ghcr.io/huskynz/10:${IMAGE_TAG}
     container_name: huskynz_msite
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.whoami.rule=Host(`localhost`)"
+
   reverse-proxy:
-    # The official v3 Traefik docker image
     image: traefik:v3.1
-    # Enables the web UI and tells Traefik to listen to docker
     command:
       - "--api.insecure=true"
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entryPoints.web.address=:80"
     ports:
-      # The HTTP port
       - "80:80"
-      # The Web UI (enabled by --api.insecure=true)
       - "8080:8080"
     volumes:
-      # So that Traefik can listen to the Docker events
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
+
   watchtower:
     image: containrrr/watchtower
     volumes:
