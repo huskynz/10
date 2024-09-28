@@ -4,9 +4,9 @@
 
 Version 10 of HuskyNZ's main site are "Supported" this inculdes the docker containers for 10
 
-[!WARNING
+# Note on V6
 Ver 6 is not fully supported but is still may be updated if needed.
-]
+
 
 
 Now why do we have this? Because why not
