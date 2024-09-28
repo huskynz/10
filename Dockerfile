@@ -16,10 +16,6 @@ RUN mv astro.config.mjs.docker astro.config.mjs
 # Accept the SENTRY_AUTH_TOKEN as a build argument
 ARG SENTRY_AUTH_TOKEN
 
-# Login to Sentry using the provided auth token
-RUN yarn add @sentry/cli
-RUN ./node_modules/.bin/sentry-cli login --auth-token $SENTRY_AUTH_TOKEN
-
 RUN yarn run build
 RUN ls -la /dist/server
 
