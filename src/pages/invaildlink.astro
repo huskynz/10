@@ -1,13 +1,10 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import { SITE } from "@consts";
+import { SITE, allowedLinks} from "@consts";
 
 // Get the query parameter for the invalid link name
 const { searchParams } = Astro.url;
 const linkName = searchParams.get('name');
-
-// Define a whitelist of allowed URLs
-const allowedLinks = ['/panel','/w7su'];
 
 // Check if the provided link name is in the allowed list
 const isValidLink = allowedLinks.includes(linkName);

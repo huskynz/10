@@ -34,6 +34,11 @@ export const DOWNLOADS: Page = {
   TITLE: "Downloads",
   DESCRIPTION: "Download some sutff from HuskyNZ",
 }
+
+export const CONTACT: Page = {
+  TITLE: "Contact Me",
+  DESCRIPTION: "Contact Me",
+}
 // Links
 export const LINKS: Links = [
   { 
@@ -41,12 +46,16 @@ export const LINKS: Links = [
     HREF: "/", 
   },
   {
-    TEXT: "Blog", 
+    TEXT: "Blog",
     HREF: "/blog", 
   },
-  { 
-    TEXT: "Projects", 
-    HREF: "/projects", 
+  {
+    TEXT: "Projects",
+    HREF: "/projects",
+  },
+  {
+    TEXT: "Contact",
+    HREF: "/contact",
   }
 ]
 
@@ -79,3 +88,4 @@ export const SOCIALS: Socials = [
   }
 ]
 
+export const allowedLinks = ['/panel','/w7su','/410340'];

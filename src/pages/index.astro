@@ -7,6 +7,7 @@ import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Quoutes from "@components/quoutes.astro"
 import Twitch from "@components/TwitchEmbed.astro"
+import Image from "astro/components/Image.astro"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
