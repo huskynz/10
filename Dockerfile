@@ -1,4 +1,4 @@
-FROM node:lts-bookworm-slim AS base
+FROM node:lts-bookworm AS base
 WORKDIR /
 
 # By copying only the package.json and package-lock.json here, we ensure that the following `-deps` steps are independent of the source code.
@@ -7,7 +7,6 @@ COPY yarn.lock package.json ./
 
 FROM base AS build-deps
 RUN yarn install
-RUN apt install chromium-browser
 
 FROM build-deps AS build
 COPY . .
