@@ -7,6 +7,7 @@ COPY yarn.lock package.json ./
 
 FROM base AS build-deps
 RUN yarn install
+RUN apt install chromium-browser
 
 FROM build-deps AS build
 COPY . .
