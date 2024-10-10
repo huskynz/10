@@ -1,0 +1,13 @@
+<script>
+    // Import the TypeScript rendering function
+import { renderMermaid } from '@components/timeline.tsx';
+
+document.addEventListener('DOMContentLoaded', () => {
+    renderMermaid();
+  });
+</script>
+
+<div class="p-10 overflow-x-auto"> <!-- Added padding and horizontal scroll for large content -->
+    <div id="mermaid-container" class="w-full h-auto overflow-visible"></div>
+  </div>
+
