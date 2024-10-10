@@ -1,5 +1,6 @@
-FROM node:lts-bookworm-slim AS base
+FROM node:lts-bookworm AS base
 WORKDIR /
+ENV PUPPETEER_SKIP_DOWNLOAD=TRUE
 
 # By copying only the package.json and package-lock.json here, we ensure that the following `-deps` steps are independent of the source code.
 # Therefore, the `-deps` steps will be skipped if only the source code changes.
