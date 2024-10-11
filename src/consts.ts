@@ -91,7 +91,7 @@ export const SOCIALS: Socials = [
     NAME: "Download CV",
     ICON: "Download", // Ensure you have an appropriate icon
     TEXT: "Download",
-    HREF: "https://hnz.li/cv"
+    HREF: "https://serv.husky.nz/public/peter-cv-v7.pdf"
   }
 ]
 
