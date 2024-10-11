@@ -5,9 +5,7 @@ import ArrowCard from "@components/ArrowCard"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
-import Quoutes from "@components/quoutes.astro"
 import Twitch from "@components/TwitchEmbed.astro"
-import Image from "astro/components/Image.astro"
 
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
@@ -80,7 +78,6 @@ const projects = (await getCollection("projects"))
       </div>
     </div>
   </section>
-
   <div class="relative bg-white dark:bg-black">
     <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
       <!-- About Section -->
@@ -91,34 +88,10 @@ const projects = (await getCollection("projects"))
         </article>
 
       </section>
-
-      <!-- Twitch Embed, Displays message when offline -->
-      <section class="animate">
-      <Twitch />
-      </section>
-      <!-- Blog Preview Section -->
-      <section class="animate">
-        <div class="space-y-4">
-          <div class="flex justify-between">
-            <p class="font-semibold text-black dark:text-white">
-              Recent posts
-            </p>
-            <a href="/blog" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
-                All posts
-              </span>
-            </a>
-          </div>
-          <ul class="space-y-4">
-            {posts.map((post) => (
-              <li>
-                <ArrowCard entry={post} />
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-      <Quoutes/>
+          <!-- Twitch Embed, Displays message when offline -->
+          <section class="animate">
+            <Twitch />
+            </section>
       <!-- <Contact/> -->
       <!-- Contact Section -->
       <section class="animate">
@@ -147,6 +120,30 @@ const projects = (await getCollection("projects"))
             ))}
         </div>
       </section>
+      <!-- Blog Preview Section 
+      <section class="animate">
+        <div class="space-y-4">
+          <div class="flex justify-between">
+            <p class="font-semibold text-black dark:text-white">
+              Recent posts
+            </p>
+            <a href="/blog" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
+              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+                All posts
+              </span>
+            </a>
+          </div>
+          <ul class="space-y-4">
+            {posts.map((post) => (
+              <li>
+                <ArrowCard entry={post} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+      -->
     </div>
   </div>
+
 </PageLayout>

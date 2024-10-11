@@ -50,8 +50,8 @@ export const LINKS: Links = [
     HREF: "/blog", 
   },
   {
-    TEXT: "Projects",
-    HREF: "/projects",
+    TEXT: "Work",
+    HREF: "/work",
   }
 ]
 
@@ -76,11 +76,22 @@ export const SOCIALS: Socials = [
     HREF: "https://github.com/husky-devel"
   },
   {
-    NAME: "Linkedin",
-    ICON: "linkedin",
-    TEXT: "Peter Gallwas",
-    HREF: "https://www.linkedin.com/in/peter-gallwas/"
-
+    NAME: "Twitch",
+    ICON: "twitch",
+    TEXT: "huskynzofficial",
+    HREF: "https://hnz.li/twitch"
+  },
+  {
+    NAME: "Youtube",
+    ICON: "youtube",
+    TEXT: "@huskynz",
+    HREF: "https://hnz.li/youtube"
+  },
+  {
+    NAME: "Download CV",
+    ICON: "Download", // Ensure you have an appropriate icon
+    TEXT: "Download",
+    HREF: "https://hnz.li/cv"
   }
 ]
 

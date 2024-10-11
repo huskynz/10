@@ -42,4 +42,13 @@ const legal = defineCollection({
   }),
 })
 
-export const collections = { work, blog, projects, legal }
+// Add the CV collection
+const cv = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+  }),
+})
+
+export const collections = { work, blog, projects, legal, cv }
