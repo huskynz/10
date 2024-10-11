@@ -8,8 +8,8 @@ export const SITE: Site = {
 }
 
 export const WORK: Page = {
-  TITLE: "Blog",
-  DESCRIPTION: "Writing on topics I am passionate about.",
+  TITLE: "Work",
+  DESCRIPTION: "Some projects I have worked on",
 }
 
 // Blog Page
