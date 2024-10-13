@@ -19,16 +19,22 @@ const isValidLink = allowedLinks.includes(linkName);
       </h1>
       {isValidLink ? (
         <p class="text-lg text-gray-600 dark:text-gray-300">
-          The link <span class="font-bold text-red-500">{linkName}</span> you tried to access is no longer valid or expired.
+          <span class="font-bold text-red-500">{linkName}</span> has been depracated and is no longer vaild!
         </p>
       ) : (
         <p class="text-lg text-gray-600 dark:text-gray-300">
           The link you have followed is invaild
         </p>
       )}
-      <p class="text-md text-gray-600 dark:text-gray-400">
-        This could be because you spelled it wrong or the link has been depracated
+      {isValidLink ? (
+         <p class="text-md text-gray-600 dark:text-gray-400">
+        This is becuase the link you tryed to access has been depracated and is no longer valid
       </p>
+      ) : (
+      <p class="text-md text-gray-600 dark:text-gray-400">
+        This could be because you spelled it wrong.
+      </p>
+      )}
       <a
         href="/"
         class="py-3 px-6 bg-white hover:bg-gray-200 text-black border border-black rounded inline-block"
