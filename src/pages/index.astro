@@ -7,6 +7,7 @@ import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Twitch from "@components/TwitchEmbed.astro"
 
+
 const posts = (await getCollection("blog"))
   .filter(post => !post.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
@@ -26,11 +27,20 @@ phClient.capture(
         distinctId: 'ian@posthog.com'
     }
 );
+
+// Import the function
+import { logUserData } from './discord-log';
+
+// Retrieve headers from the Astro request
+const headers = Astro.request.headers;
+
+// Call the logUserData function to send a "new visitor" message
+await logUserData(headers);
+
 ---
 
 
 <PageLayout title="Home" description={SITE.DESCRIPTION}>
-
   <!-- Light Mode: Particles -->
   <div class='absolute inset-0 block dark:hidden'>
     <div id='particles1' class='fixed inset-0'></div>
@@ -130,7 +140,7 @@ phClient.capture(
             ))}
         </div>
       </section>
-      <!-- Blog Preview Section 
+      <!-- Blog Preview Section
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
@@ -152,7 +162,7 @@ phClient.capture(
           </ul>
         </div>
       </section>
-      -->
+     -->
     </div>
   </div>
 
