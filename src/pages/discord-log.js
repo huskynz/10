@@ -210,7 +210,7 @@ client.on('interactionCreate', async (interaction) => {
             `;
 
             // Define R2 bucket configurations
-            const bucketName = 'discordlog'; // Replace with your R2 bucket name
+            const bucketName = 'discordlog'; // Cloudflare r2 bucket
             const fileName = `logs_${Date.now()}.html`; // Unique file name based on timestamp
             const dlogurl = import.meta.env.DLOG_URL; // The base URL for your R2 bucket
 
@@ -232,7 +232,7 @@ client.on('interactionCreate', async (interaction) => {
                 }).promise();
 
                 const fileUrl = `${dlogurl}/${fileName}`; // Construct the URL for the uploaded file
-                await interaction.followUp({ content: `Logs exported successfully! You can view them [here](${fileUrl})`, ephemeral: true });
+                await interaction.followUp({ content: `Logs exported successfully! You can view them here ${fileUrl} (ps. You will be required to complete auth to access the log)`, ephemeral: true });
             } catch (error) {
                 console.error('Error uploading log to R2:', error);
                 await interaction.followUp({ content: 'Failed to export logs. Please try again later.', ephemeral: true });

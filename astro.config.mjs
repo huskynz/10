@@ -13,5 +13,6 @@ export default defineConfig({
   integrations: [mdx(), sitemap(), solidJs(), tailwind({
     applyBaseStyles: false
   }),],
-  adapter: netlify()
+  adapter: node({
+    mode: 'standalone',
 });
