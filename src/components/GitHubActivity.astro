@@ -80,50 +80,31 @@ function formatDate(dateString: string): string {
   });
 }
 
-// Get all weeks for the current year
 const contributionWeeks = contributions?.weeks;
+
 ---
-<div class="flex justify-center w-full">
-  <div class="p-4 rounded-lg border border-black/25 dark:border-white/25 blend w-[920px]">
-    <div class="flex justify-between items-center mb-4">
-      <p class="font-semibold text-black dark:text-white">
-        GitHub Activity by Me
-      </p>
-      <a 
-        href={`https://github.com/${username}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="text-sm text-black/75 dark:text-white/75 hover:text-black hover:dark:text-white blend"
-      >
+<div class="w-full">
+  <div class="flex flex-col gap-4 p-4 rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/50 backdrop-blur">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+      <h2 class="font-semibold">GitHub Activity</h2>
+      <a href="https://github.com/HuskyNZ" target="_blank" class="text-sm text-black/75 dark:text-white/75 hover:text-black hover:dark:text-white transition-colors flex items-center gap-1">
         View Profile →
       </a>
     </div>
 
-    <div class="w-full">
-      <div class="flex gap-[3px]">
-        {contributionWeeks?.map((week: any) => (
-          <div class="flex flex-col gap-[3px]">
-            {week.contributionDays.map((day: any, index: number) => (
-              <div class="relative group">
-                <div 
-                  class={`w-[14px] h-[14px] rounded-sm ${getContributionClass(day.contributionCount)} hover:ring-1 hover:ring-black/50 dark:hover:ring-white/50 transition-all`}
-                >
+    <div class="relative w-full">
+      <div id="contributionContainer" class="overflow-hidden">
+        <div id="contributionsGrid" class="flex gap-[3px]">
+          {contributionWeeks?.map((week) => (
+            <div class="contribution-week flex flex-col gap-[3px]">
+              {week.contributionDays.map((day) => (
+                <div class="relative group">
+                  <div class={`w-[10px] sm:w-[12px] lg:w-[14px] h-[10px] sm:h-[12px] lg:h-[14px] rounded-sm ${getContributionClass(day.contributionCount)}`}></div>
                 </div>
-                <div class={`absolute z-50 ${index < 2 ? 'top-full mt-2' : 'bottom-full mb-2'} left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all pointer-events-none`}>
-                  <div class="bg-black/90 dark:bg-white/90 text-white dark:text-black py-1 px-2 rounded text-xs whitespace-nowrap">
-                    {day.contributionCount} contribution{day.contributionCount !== 1 ? 's' : ''}
-                    <br/>
-                    {formatDate(day.date)}
-                    <div 
-                      class={`absolute ${index < 2 ? '-top-1' : '-bottom-1'} left-1/2 w-2 h-2 -translate-x-1/2 rotate-45 bg-black/90 dark:bg-white/90`}
-                    >
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
+              ))}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
 
@@ -132,3 +113,8 @@ const contributionWeeks = contributions?.weeks;
     </div>
   </div>
 </div>
+
+<script>
+  import { adjustContributions } from './GithubActivityUtils';
+  adjustContributions();
+</script>
