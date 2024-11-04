@@ -45,6 +45,7 @@ const turnsiteSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   <!-- Turnstile Widget -->
   <div class="flex justify-center">
     <div
+      id="turnstile-widget"
       class="cf-turnstile"
       data-sitekey={turnsiteSiteKey}
       data-theme="auto"
@@ -67,67 +68,7 @@ const turnsiteSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 
 <script>
-  const form = document.getElementById('contactForm') as HTMLFormElement;
-  const statusDiv = document.getElementById('formStatus') as HTMLDivElement;
-  const statusText = statusDiv.querySelector('p') as HTMLParagraphElement;
-
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    // Get turnstile token
-    const turnstileResponse = document.querySelector<HTMLElement>('[name="cf-turnstile-response"]')?.getAttribute('value');
-    
-    if (!turnstileResponse) {
-      statusDiv.classList.remove('hidden');
-      statusText.textContent = 'Please complete the captcha';
-      statusText.className = 'text-sm text-red-600 dark:text-red-400';
-      return;
-    }
-
-    // Show loading state
-    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalButtonText = submitButton.textContent;
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
-
-    const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-      turnstileToken: turnstileResponse
-    };
-
-    try {
-      const response = await fetch('/api/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (response.ok) {
-        // Success
-        statusDiv.classList.remove('hidden');
-        statusText.textContent = 'Message sent successfully!';
-        statusText.className = 'text-sm text-green-600 dark:text-green-400';
-        form.reset();
-        // Reset turnstile
-        window.turnstile.reset();
-      } else {
-        // Error
-        throw new Error(result.error || 'Failed to send message');
-      }
-    } catch (error) {
-      statusDiv.classList.remove('hidden');
-      statusText.textContent = error.message;
-      statusText.className = 'text-sm text-red-600 dark:text-red-400';
-    } finally {
-      submitButton.textContent = originalButtonText;
-      submitButton.disabled = false;
-    }
-  });
+  import { initializeContactForm } from '@components/contactformsc';
+  const turnsiteSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+  initializeContactForm(turnsiteSiteKey);
 </script>
