@@ -1,12 +1,14 @@
 ---
 import { getCollection } from "astro:content"
 import PageLayout from "@layouts/PageLayout.astro"
-import ArrowCard from "@components/ArrowCard"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Twitch from "@components/TwitchEmbed.astro"
 import TimelineSkills from "@components/TimelineSkills.astro"
+import GitHubActivity from "@components/GitHubActivity.astro"
+import ContactForm from '@components/ContactForm.astro';
+
 
 
 const posts = (await getCollection("blog"))
@@ -109,12 +111,17 @@ await logUserData(headers);
         </article>
 
       </section>
-          <!-- Twitch Embed, Displays message when offline -->
+            <!-- Add GitHub Activity here -->
+    <section class="animate">
+      <GitHubActivity />
+    </section>
+            <TimelineSkills />
+
+             <!-- Twitch Embed, Displays message when offline -->
           <section class="animate">
             <Twitch />
             </section>
-            <TimelineSkills />
-      <!-- <Contact/> -->
+      
       <!-- Contact Section -->
       <section class="animate">
         <div>
@@ -122,7 +129,7 @@ await logUserData(headers);
             Let's Connect
           </p>
           <p>
-            Reach out to me via email or on social media.
+            Reach out to me useing the form below or via email or on social media.
           </p>
           <!-- <Contact /> -->
           <div class="grid grid-cols-4 gap-y-2 mt-4 auto-cols-min">
@@ -140,6 +147,15 @@ await logUserData(headers);
                 </a>
               </div>
             ))}
+        </div>
+      </section>
+      <!-- <Contact/> -->
+      <section class="animate">
+        <div class="space-y-4">
+          <p class="font-semibold text-black dark:text-white">
+            Contact Me
+          </p>
+          <ContactForm />
         </div>
       </section>
       <!-- Blog Preview Section
