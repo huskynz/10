@@ -39,22 +39,27 @@ export const CONTACT: Page = {
   TITLE: "Contact Me",
   DESCRIPTION: "Contact Me",
 }
-// Links
+
+// Update LINKS constant
 export const LINKS: Links = [
   { 
     TEXT: "Home", 
-    HREF: "/", 
+    HREF: "/",
   },
   {
     TEXT: "Blog",
-    HREF: "/blog", 
+    HREF: "/blog",
   },
+ // {
+   // TEXT: "Contact me",
+   // HREF: "/#contact",
+   // isHash: true, // Mark as hash-based route
+  //}, fix this later when brain is working
   {
     TEXT: "Work",
     HREF: "/work",
   }
-]
-
+];
 // Socials
 export const SOCIALS: Socials = [
   { 

@@ -10,6 +10,7 @@ export interface Site extends Page {
 export type Links = {
   TEXT: string
   HREF: string
+  isHash?: boolean 
 }[]
 
 export type Socials = {
