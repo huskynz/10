@@ -6,6 +6,7 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 import Twitch from "@components/TwitchEmbed.astro"
+import TimelineSkills from "@components/TimelineSkills.astro"
 
 
 const posts = (await getCollection("blog"))
@@ -112,6 +113,7 @@ await logUserData(headers);
           <section class="animate">
             <Twitch />
             </section>
+            <TimelineSkills />
       <!-- <Contact/> -->
       <!-- Contact Section -->
       <section class="animate">
