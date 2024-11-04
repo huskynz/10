@@ -1,36 +1,65 @@
 import { Resend } from 'resend';
+import type { APIRoute } from 'astro';
 
-const resend = new Resend(import.meta.env.VITE_RESEND_API_KEY);  // Use environment variable
+const resend = new Resend(import.meta.env.RESEND_API_KEY);
 
-export async function post({ request }) {
-  // Parse the form data received from the request
-  const formData = await request.formData();
+async function verifyTurnstileToken(token: string) {
+  const response = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      secret: import.meta.env.TURNSTILE_SECRET_KEY,
+      response: token,
+    }),
+  });
 
-  const name = formData.get('name');
-  const email = formData.get('email');
-  const message = formData.get('message');
+  const data = await response.json();
+  return data.success;
+}
 
+export const POST: APIRoute = async ({ request }) => {
   try {
-    await resend.emails.send({
-      from: 'contact@send.husky.nz',
-      to: 'peter@husky.nz',
-      subject: `Contact form submission from ${name}`,
+    const formData = await request.json();
+    const { name, email, message, turnstileToken } = formData;
+
+    // Verify turnstile token
+    const isValid = await verifyTurnstileToken(turnstileToken);
+    if (!isValid) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid captcha' }),
+        { status: 400 }
+      );
+    }
+
+    const { data, error } = await resend.emails.send({
+      from: import.meta.env.CONTACT_SEND_EMAIL,
+      to: import.meta.env.CONTACT_EMAIL,
+      subject: `New Contact Form Submission from ${name}`,
       html: `
-        <h1>New Contact Form Submission</h1>
+        <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong> ${message}</p>
-      `,
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `
     });
 
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 400,
+      });
+    }
+
     return new Response(
-      JSON.stringify({ message: 'Email sent successfully!' }),
+      JSON.stringify({ message: 'Email sent successfully' }),
       { status: 200 }
     );
-  } catch (error) {
+  } catch (e) {
     return new Response(
-      JSON.stringify({ message: 'Failed to send email', error }),
+      JSON.stringify({ error: 'Failed to send email' }),
       { status: 500 }
     );
   }
-}
+};

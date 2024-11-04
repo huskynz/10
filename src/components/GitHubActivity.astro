@@ -1,0 +1,134 @@
+---
+// src/components/GitHubActivity.astro
+const username = import.meta.env.GITHUB_USERNAME;
+const githubToken = import.meta.env.GITHUB_TOKEN;
+
+async function getGithubContributions() {
+  const currentYear = new Date().getFullYear();
+  const startDate = new Date(currentYear, 0, 1).toISOString(); // January 1st of current year
+  const today = new Date();
+  today.setHours(23, 59, 59, 999); // End of today
+  const endDate = today.toISOString();
+
+  const query = `
+    query($username: String!) {
+      user(login: $username) {
+        contributionsCollection(from: "${startDate}", to: "${endDate}") {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                contributionCount
+                date
+                weekday
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        Authorization: `bearer ${githubToken}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        query,
+        variables: { username },
+      }),
+    });
+
+    const { data } = await response.json();
+    
+    // Filter out future dates
+    const today = new Date();
+    data.user.contributionsCollection.contributionCalendar.weeks = 
+      data.user.contributionsCollection.contributionCalendar.weeks.map(week => ({
+        ...week,
+        contributionDays: week.contributionDays.filter(day => 
+          new Date(day.date) <= today
+        )
+      })).filter(week => week.contributionDays.length > 0);
+
+    return data.user.contributionsCollection.contributionCalendar;
+  } catch (error) {
+    console.error('Error fetching GitHub contributions:', error);
+    return null;
+  }
+}
+
+const contributions = await getGithubContributions();
+
+function getContributionClass(count: number): string {
+  if (count === 0) return 'bg-black/[.05] dark:bg-white/[.05]';
+  if (count <= 3) return 'bg-black/[.15] dark:bg-white/[.15]';
+  if (count <= 6) return 'bg-black/[.25] dark:bg-white/[.25]';
+  if (count <= 9) return 'bg-black/[.35] dark:bg-white/[.35]';
+  return 'bg-black/[.45] dark:bg-white/[.45]';
+}
+
+function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+
+// Get all weeks for the current year
+const contributionWeeks = contributions?.weeks;
+---
+<div class="flex justify-center w-full">
+  <div class="p-4 rounded-lg border border-black/25 dark:border-white/25 blend w-[920px]">
+    <div class="flex justify-between items-center mb-4">
+      <p class="font-semibold text-black dark:text-white">
+        GitHub Activity by Me
+      </p>
+      <a 
+        href={`https://github.com/${username}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-black/75 dark:text-white/75 hover:text-black hover:dark:text-white blend"
+      >
+        View Profile →
+      </a>
+    </div>
+
+    <div class="w-full">
+      <div class="flex gap-[3px]">
+        {contributionWeeks?.map((week: any) => (
+          <div class="flex flex-col gap-[3px]">
+            {week.contributionDays.map((day: any, index: number) => (
+              <div class="relative group">
+                <div 
+                  class={`w-[14px] h-[14px] rounded-sm ${getContributionClass(day.contributionCount)} hover:ring-1 hover:ring-black/50 dark:hover:ring-white/50 transition-all`}
+                >
+                </div>
+                <div class={`absolute z-50 ${index < 2 ? 'top-full mt-2' : 'bottom-full mb-2'} left-1/2 -translate-x-1/2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all pointer-events-none`}>
+                  <div class="bg-black/90 dark:bg-white/90 text-white dark:text-black py-1 px-2 rounded text-xs whitespace-nowrap">
+                    {day.contributionCount} contribution{day.contributionCount !== 1 ? 's' : ''}
+                    <br/>
+                    {formatDate(day.date)}
+                    <div 
+                      class={`absolute ${index < 2 ? '-top-1' : '-bottom-1'} left-1/2 w-2 h-2 -translate-x-1/2 rotate-45 bg-black/90 dark:bg-white/90`}
+                    >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <div class="mt-4 text-sm text-black/75 dark:text-white/75">
+      {contributions?.totalContributions.toLocaleString()} contributions in the last year
+    </div>
+  </div>
+</div>
