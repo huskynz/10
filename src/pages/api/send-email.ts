@@ -36,7 +36,7 @@ export const POST: APIRoute = async ({ request }) => {
     const { data, error } = await resend.emails.send({
       from: import.meta.env.CONTACT_SEND_EMAIL,
       to: import.meta.env.CONTACT_EMAIL,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Contact Form Submission from ${name} there email is ${email}`,
       html: `
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
@@ -53,7 +53,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     return new Response(
-      JSON.stringify({ message: 'Email sent successfully' }),
+      JSON.stringify({ message: 'Email sent successfully, thank you I will get back to you shortly' }),
       { status: 200 }
     );
   } catch (e) {

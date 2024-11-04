@@ -4,7 +4,7 @@ import PageLayout from "@layouts/PageLayout.astro"
 import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
-import Twitch from "@components/TwitchEmbed.astro"
+// Renable with twitch embed at later point import Twitch from "@components/TwitchEmbed.astro"
 import TimelineSkills from "@components/TimelineSkills.astro"
 import GitHubActivity from "@components/GitHubActivity.astro"
 import ContactForm from '@components/ContactForm.astro';
@@ -32,13 +32,13 @@ phClient.capture(
 );
 
 // Import the function
-import { logUserData } from './discord-log';
+//import { logUserData } from './discord-log';
 
 // Retrieve headers from the Astro request
-const headers = Astro.request.headers;
+//const headers = Astro.request.headers;
 
 // Call the logUserData function to send a "new visitor" message
-await logUserData(headers);
+//await logUserData(headers);
 
 ---
 
@@ -90,12 +90,15 @@ await logUserData(headers);
             A Solutions Architect
           </p>
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
-            <a href='/blog' class='py-2 px-4 rounded truncate text-xs text-center md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
-              Read my blog
+            <a href='#contact' class='py-2 px-4 rounded truncate text-xs text-center md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+              Lets Connect
             </a>
             <a href='/work' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
               View my work and projects
             </a>
+           <!-- Enable this at a later date <a href='/blog' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+              Read my blog
+            </a>-->
           </div>
         </div>
       </div>
@@ -115,15 +118,16 @@ await logUserData(headers);
     <section class="animate">
       <GitHubActivity />
     </section>
+      <section class="animate">
             <TimelineSkills />
-
-             <!-- Twitch Embed, Displays message when offline -->
-          <section class="animate">
+          </section>
+             <!-- Twitch Embed, Displays message when offline - Reanable later
+          <section id="contact" class="animate">
             <Twitch />
             </section>
-      
+      -->
       <!-- Contact Section -->
-      <section class="animate">
+      <section id="contact" class="animate scroll-mt-32">
         <div>
           <p class="font-semibold text-black dark:text-white">
             Let's Connect
@@ -148,12 +152,13 @@ await logUserData(headers);
               </div>
             ))}
         </div>
-      </section>
-      <!-- <Contact/> -->
-      <section class="animate">
+        <br>
         <div class="space-y-4">
           <p class="font-semibold text-black dark:text-white">
-            Contact Me
+            Please feel free to reach out to me via this form.
+          </p>
+          <p class=" text-black dark:text-white">
+            I will reply within 48 hours.
           </p>
           <ContactForm />
         </div>
