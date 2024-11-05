@@ -93,6 +93,12 @@ export const SOCIALS: Socials = [
     HREF: "https://hnz.li/youtube"
   },
   {
+    NAME: "Discord",
+    ICON: "discord",
+    TEXT: "huskynzofficial",
+    HREF: "https://discord.com"
+  },
+  {
     NAME: "Download CV",
     ICON: "Download", // Ensure you have an appropriate icon
     TEXT: "Download",

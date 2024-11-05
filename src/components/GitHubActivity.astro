@@ -81,10 +81,10 @@ function formatDate(dateString: string): string {
 }
 
 const contributionWeeks = contributions?.weeks;
-
 ---
-<div class="w-full">
-  <div class="flex flex-col gap-4 p-4 rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/50 backdrop-blur">
+<!-- Mobile View -->
+<div class="block sm:hidden w-full max-w-[350px] mx-auto">
+  <div class="flex flex-col gap-4 p-4 rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/50 backdrop-blur overflow-x-auto">
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
       <h2 class="font-semibold">GitHub Activity</h2>
       <a href="https://github.com/HuskyNZ" target="_blank" class="text-sm text-black/75 dark:text-white/75 hover:text-black hover:dark:text-white transition-colors flex items-center gap-1">
@@ -93,13 +93,18 @@ const contributionWeeks = contributions?.weeks;
     </div>
 
     <div class="relative w-full">
-      <div id="contributionContainer" class="overflow-hidden">
-        <div id="contributionsGrid" class="flex gap-[3px]">
+      <div id="contributionContainer-mobile" class="overflow-hidden">
+        <div id="contributionsGrid-mobile" class="flex gap-[3px]">
           {contributionWeeks?.map((week) => (
-            <div class="contribution-week flex flex-col gap-[3px]">
+            <div class="contribution-week-mobile flex flex-col gap-[3px]">
               {week.contributionDays.map((day) => (
                 <div class="relative group">
-                  <div class={`w-[10px] sm:w-[12px] lg:w-[14px] h-[10px] sm:h-[12px] lg:h-[14px] rounded-sm ${getContributionClass(day.contributionCount)}`}></div>
+                  <div class={`w-[10px] h-[10px] rounded-sm ${getContributionClass(day.contributionCount)}`}>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 dark:bg-white/90 text-white dark:text-black text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-10">
+                      {day.contributionCount} contribution{day.contributionCount !== 1 ? 's' : ''} on {formatDate(day.date)}
+                      <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-black/90 dark:border-t-white/90"></div>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -114,7 +119,44 @@ const contributionWeeks = contributions?.weeks;
   </div>
 </div>
 
+<!-- Desktop View -->
+<div class="hidden sm:block w-full max-w-[1200px] mx-auto">
+  <div class="flex flex-col gap-4 p-4 rounded-lg border border-black/10 dark:border-white/10 bg-white/50 dark:bg-black/50 backdrop-blur">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+      <h2 class="font-semibold">GitHub Activity</h2>
+      <a href="https://github.com/HuskyNZ" target="_blank" class="text-sm text-black/75 dark:text-white/75 hover:text-black hover:dark:text-white transition-colors flex items-center gap-1">
+        View Profile →
+      </a>
+    </div>
+
+    <div class="relative w-full">
+      <div id="contributionContainer-desktop" class="w-full">
+        <div id="contributionsGrid-desktop" class="flex gap-[3px] w-full justify-between">
+          {contributionWeeks?.map((week) => (
+            <div class="contribution-week-desktop flex flex-col gap-[3px] flex-1">
+              {week.contributionDays.map((day) => (
+                <div class="relative group aspect-square">
+                  <div class={`w-full h-full rounded-sm ${getContributionClass(day.contributionCount)}`}>
+                    <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-black/90 dark:bg-white/90 text-white dark:text-black text-xs rounded opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-10">
+                      {day.contributionCount} contribution{day.contributionCount !== 1 ? 's' : ''} on {formatDate(day.date)}
+                      <div class="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-black/90 dark:border-t-white/90"></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+        <div class="mt-4 text-sm text-black/75 dark:text-white/75">
+          {contributions?.totalContributions.toLocaleString()} contributions in the last year
+        </div>
+  </div>
+</div>
+
 <script>
   import { adjustContributions } from './GithubActivityUtils';
-  adjustContributions();
+  window.addEventListener('load', adjustContributions);
+  window.addEventListener('resize', () => {
+    requestAnimationFrame(adjustContributions);
+  });
 </script>
