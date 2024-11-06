@@ -5,7 +5,6 @@ import { SITE, SOCIALS } from "@consts"
 import TwinklingStars from "@components/TwinklingStars.astro"
 import MeteorShower from "@components/MeteorShower.astro"
 // Renable with twitch embed at later point import Twitch from "@components/TwitchEmbed.astro"
-import TimelineSkills from "@components/TimelineSkills.astro"
 import GitHubActivity from "@components/GitHubActivity.astro"
 import ContactForm from '@components/ContactForm.astro';
 
@@ -118,10 +117,12 @@ phClient.capture(
     <section class="animate">
       <GitHubActivity />
     </section>
-      <section class="animate">
+      <!-- Disable timeline on main page this was moved to /work 
+       <section class="animate">
             <TimelineSkills />
           </section>
-             <!-- Twitch Embed, Displays message when offline - Reanable later
+          --> 
+          <!-- Twitch Embed, Displays message when offline - Reanable later
           <section id="contact" class="animate">
             <Twitch />
             </section>
