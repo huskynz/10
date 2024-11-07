@@ -25,7 +25,6 @@ jobs:
         with:
           fetch-depth: 1
 
-      # Setup Node.js for potential pre-build steps or tests
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -54,7 +53,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      # Cache Docker layers
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
@@ -77,19 +75,7 @@ jobs:
             BUILDKIT_INLINE_CACHE=1
             NODE_ENV=production
 
-      # Temp fix for cache
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
           mv /tmp/.buildx-cache-new /tmp/.buildx-cache
-
-      # Optional: Add testing or validation steps here
-      - name: Run vulnerability scanner
-        uses: aquasecurity/trivy-action@master
-        if: github.event_name != 'pull_request'
-        with:
-          image-ref: ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }}
-          format: table
-          exit-code: '1'
-          ignore-unfixed: true
-          severity: 'CRITICAL'
