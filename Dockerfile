@@ -1,27 +1,45 @@
-FROM node:lts-bookworm AS base
-WORKDIR /
+# Build stage
+FROM node:20.11-slim AS builder
+WORKDIR /app
 ENV PUPPETEER_SKIP_DOWNLOAD=TRUE
+# Install any needed system dependencies for the build
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    python3 \
+    build-essential && \
+    rm -rf /var/lib/apt/lists/*
 
-# By copying only the package.json and package-lock.json here, we ensure that the following `-deps` steps are independent of the source code.
-# Therefore, the `-deps` steps will be skipped if only the source code changes.
-COPY yarn.lock package.json ./
+# Install dependencies
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-FROM base AS build-deps
-RUN yarn install
-
-FROM build-deps AS build
+# Build the app
 COPY . .
-# Rename astro.config.mjs.docker to astro.config.mjs
-RUN mv astro.config.mjs.docker astro.config.mjs
+RUN mv astro.config.mjs.docker astro.config.mjs && \
+    yarn build
 
-RUN yarn run build
-RUN ls -la /dist/server
+# Runtime stage - using Node since it's a SSR Astro app
+FROM node:20.11-slim AS runtime
+WORKDIR /app
+ENV HOST=0.0.0.0 \
+    PORT=4321 \
+    NODE_ENV=production
 
-FROM base AS runtime
-COPY --from=build-deps /node_modules ./node_modules
-COPY --from=build /dist ./dist
+# Copy only what's needed to run the app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/yarn.lock ./yarn.lock
 
-ENV HOST=0.0.0.0
-ENV PORT=4321
+# Install only production dependencies
+RUN yarn install --frozen-lockfile --production=true && \
+    # Create non-root user
+    addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nodejs && \
+    # Clean up
+    yarn cache clean && \
+    chown -R nodejs:nodejs /app
+
+USER nodejs
 EXPOSE 4321
-CMD node ./dist/server/entry.mjs
+
+CMD ["node", "./dist/server/entry.mjs"]
