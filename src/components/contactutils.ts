@@ -35,19 +35,27 @@ function resetEmailMessage(emailMessage: HTMLDivElement): void {
 
 function updateCharacterCount(textarea: HTMLTextAreaElement, charCount: HTMLElement): void {
   const MAX_LENGTH = 500;
-  const WARNING_THRESHOLD = 100;
+  const WARNING_THRESHOLD = 200;
   const CRITICAL_THRESHOLD = 50;
   const remaining = MAX_LENGTH - textarea.value.length;
-  charCount.textContent = `${remaining} characters remaining`;
   
-  // Remove all possible status classes first
+  // Update counter text and message
+  if (remaining <= 0) {
+    charCount.innerHTML = `
+      <div class="text-l mt-1 text-red-500 dark:text-red-400">
+        You have run out of characters, please try and keep it short and sweet!!!!
+      </div>
+    `;
+  } else {
+    charCount.innerHTML = `<span>${remaining} characters remaining</span>`;
+  }
+
   charCount.classList.remove(
     'text-gray-500', 'dark:text-gray-400',
     'text-yellow-500', 'dark:text-yellow-400',
     'text-red-500', 'dark:text-red-400'
   );
 
-  // Add appropriate status classes
   if (remaining < 0) {
     charCount.classList.add('text-red-500', 'dark:text-red-400');
   } else if (remaining <= CRITICAL_THRESHOLD) {
@@ -70,6 +78,14 @@ export function initializeContactForm(turnsiteSiteKey: string): void {
   const nameInput = document.querySelector('input[name="name"]') as HTMLInputElement;
 
   let turnstileWidget: string;
+
+  // Reset form on page load/refresh
+  window.addEventListener('load', () => {
+    form.reset();
+    resetEmailMessage(emailMessage);
+    updateCharacterCount(textarea, charCount);
+    statusDiv.classList.add('hidden');
+  });
 
   // Initialize character counter
   textarea.addEventListener('input', () => updateCharacterCount(textarea, charCount));
