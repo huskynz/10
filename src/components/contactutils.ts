@@ -27,133 +27,121 @@ const nameMessages: Record<string, string> = {
   'alice': 'Following any white rabbits lately? 🐰',
 };
 
-
 function resetEmailMessage(emailMessage: HTMLDivElement): void {
   emailMessage.textContent = '';
   emailMessage.classList.add('hidden');
   emailMessage.classList.remove('text-blue-500', 'dark:text-blue-400');
 }
 
+function updateCharacterCount(textarea: HTMLTextAreaElement, charCount: HTMLElement): void {
+  const MAX_LENGTH = 500;
+  const WARNING_THRESHOLD = 100;
+  const CRITICAL_THRESHOLD = 50;
+  const remaining = MAX_LENGTH - textarea.value.length;
+  charCount.textContent = `${remaining} characters remaining`;
+  
+  // Remove all possible status classes first
+  charCount.classList.remove(
+    'text-gray-500', 'dark:text-gray-400',
+    'text-yellow-500', 'dark:text-yellow-400',
+    'text-red-500', 'dark:text-red-400'
+  );
+
+  // Add appropriate status classes
+  if (remaining < 0) {
+    charCount.classList.add('text-red-500', 'dark:text-red-400');
+  } else if (remaining <= CRITICAL_THRESHOLD) {
+    charCount.classList.add('text-red-500', 'dark:text-red-400');
+  } else if (remaining <= WARNING_THRESHOLD) {
+    charCount.classList.add('text-yellow-500', 'dark:text-yellow-400');
+  } else {
+    charCount.classList.add('text-gray-500', 'dark:text-gray-400');
+  }
+}
+
 export function initializeContactForm(turnsiteSiteKey: string): void {
   const form = document.getElementById('contactForm') as HTMLFormElement;
   const statusDiv = document.getElementById('formStatus') as HTMLDivElement;
   const statusText = statusDiv.querySelector('p') as HTMLParagraphElement;
-  
-// Initialize form elements
-const textarea = document.getElementById('message') as HTMLTextAreaElement;
-const charCount = document.getElementById('charCount') as HTMLDivElement;
-const emailInput = document.getElementById('email') as HTMLInputElement;
-const nameInput = document.getElementById('name') as HTMLInputElement;
-const emailMessage = document.getElementById('emailMessage') as HTMLDivElement;
-const nameMessage = document.getElementById('nameMessage') as HTMLDivElement;
+  const textarea = document.getElementById('message') as HTMLTextAreaElement;
+  const charCount = document.getElementById('charCount') as HTMLElement;
+  const emailInput = document.querySelector('input[name="email"]') as HTMLInputElement;
+  const emailMessage = document.getElementById('emailMessage') as HTMLDivElement;
+  const nameInput = document.querySelector('input[name="name"]') as HTMLInputElement;
 
-// Email check
-emailInput?.addEventListener('input', () => {
-  const email = emailInput.value.toLowerCase();
-  const domain = email.split('@')[1];
-  
-  if (specificEmailMessages[email]) {
-    emailMessage.textContent = specificEmailMessages[email];
-    emailMessage.classList.remove('hidden');
-    emailMessage.classList.add('text-grey-500', 'dark:text-grey-400');
-  } else if (domain && domainMessages[domain]) {
-    emailMessage.textContent = domainMessages[domain];
-    emailMessage.classList.remove('hidden');
-    emailMessage.classList.add('text-grey-500', 'dark:text-grey-400');
-  } else {
-    emailMessage.classList.add('hidden');
-  }
-});
+  let turnstileWidget: string;
 
-// Name check
-nameInput?.addEventListener('input', () => {
-  const name = nameInput.value.toLowerCase().trim();
-  
-  if (name === '') {
-    nameMessage.classList.add('hidden');
-  } else if (nameMessages[name]) {
-    nameMessage.textContent = nameMessages[name];
-    nameMessage.classList.remove('hidden');
-    nameMessage.classList.add('text-grey-500', 'dark:text-grey-400');
-  } else {
-    nameMessage.classList.add('hidden');
-  }
-});
+  // Initialize character counter
+  textarea.addEventListener('input', () => updateCharacterCount(textarea, charCount));
+  updateCharacterCount(textarea, charCount);
 
-// Reset function
-function resetEmailMessage(): void {
-  emailMessage.textContent = '';
-  emailMessage.classList.add('hidden');
-  nameMessage.textContent = '';
-  nameMessage.classList.add('hidden');
-}
+  // Email validation and custom messages
+  emailInput.addEventListener('input', () => {
+    const email = emailInput.value.toLowerCase();
+    resetEmailMessage(emailMessage);
 
-// Reset all form fields on page load
-if (textarea && emailInput && nameInput) {
-  textarea.value = '';
-  emailInput.value = '';
-  nameInput.value = '';
-  resetEmailMessage();
-  
-  if (charCount) {
-    charCount.textContent = '500 characters remaining';
-    charCount.className = 'text-sm text-gray-500 dark:text-gray-400 mt-1';
-  }
-}
-  // Form submission
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const turnstileResponse = document.querySelector<HTMLInputElement>('[name="cf-turnstile-response"]')?.value;
-    
-    if (!turnstileResponse) {
-      statusDiv.classList.remove('hidden');
-      statusText.textContent = 'Please complete the captcha';
-      statusText.className = 'text-sm text-red-600 dark:text-red-400';
+    if (specificEmailMessages[email]) {
+      emailMessage.textContent = specificEmailMessages[email];
+      emailMessage.classList.remove('hidden');
+      emailMessage.classList.add('text-blue-500', 'dark:text-blue-400');
       return;
     }
 
-    const submitButton = form.querySelector('button[type="submit"]') as HTMLButtonElement;
-    const originalButtonText = submitButton.textContent;
-    submitButton.textContent = 'Sending...';
-    submitButton.disabled = true;
+    const domain = email.split('@')[1];
+    if (domain && domainMessages[domain]) {
+      emailMessage.textContent = domainMessages[domain];
+      emailMessage.classList.remove('hidden');
+      emailMessage.classList.add('text-blue-500', 'dark:text-blue-400');
+    }
+  });
 
+  // Name validation and custom messages
+  nameInput.addEventListener('input', () => {
+    const name = nameInput.value.toLowerCase();
+    if (nameMessages[name]) {
+      emailMessage.textContent = nameMessages[name];
+      emailMessage.classList.remove('hidden');
+      emailMessage.classList.add('text-blue-500', 'dark:text-blue-400');
+    } else {
+      resetEmailMessage(emailMessage);
+    }
+  });
+
+  // Initialize Turnstile
+  turnstileWidget = (window as unknown as TurnstileWindow).turnstile.render(
+    '#turnstile-widget',
+    {
+      sitekey: turnsiteSiteKey,
+      theme: 'auto',
+    }
+  );
+
+  // Form submission
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
     const formData = new FormData(form);
-    const data = {
-      name: formData.get('name'),
-      email: formData.get('email'),
-      message: formData.get('message'),
-      turnstileToken: turnstileResponse
-    };
-
+    
     try {
-      const response = await fetch('/api/send-email', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       const result = await response.json();
 
       if (response.ok) {
         statusDiv.classList.remove('hidden');
-        statusText.textContent = 'Email sent successfully, thank you I will get back to you shortly';
-        statusText.className = 'text-sm text-green-600 dark:text-green-400';
+        statusText.textContent = 'Message sent successfully!';
+        statusText.classList.add('text-green-500');
         form.reset();
-        resetEmailMessage();
-        ((window as unknown) as TurnstileWindow).turnstile.reset();
+        (window as unknown as TurnstileWindow).turnstile.reset(turnstileWidget);
       } else {
-        throw new Error(result.error || 'Failed to send message');
+        throw new Error(result.message || 'Failed to send message');
       }
     } catch (error) {
       statusDiv.classList.remove('hidden');
-      statusText.textContent = error instanceof Error ? error.message : 'Failed to send message';
-      statusText.className = 'text-sm text-red-600 dark:text-red-400';
-    } finally {
-      submitButton.textContent = originalButtonText;
-      submitButton.disabled = false;
+      statusText.textContent = error instanceof Error ? error.message : 'An error occurred';
+      statusText.classList.add('text-red-500');
     }
   });
 }
