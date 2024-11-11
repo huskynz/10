@@ -67,8 +67,9 @@ jobs:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           tags: |
-            ghcr.io/${{ github.repository }}:${{ steps.tag.outputs.tag }}
-            ${{ github.ref == 'refs/heads/master' && 'ghcr.io/${{ github.repository }}:master' || '' }}
+            ${{ github.ref == 'refs/heads/master' && format('ghcr.io/{0}:master', github.repository) || '' }}
+            ${{ github.ref == 'refs/heads/dev' && format('ghcr.io/{0}:dev', github.repository) || '' }}
+            ${{ !startsWith(github.ref, 'refs/heads/') && format('ghcr.io/{0}:{1}', github.repository, github.sha) || '' }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
           build-args: |
