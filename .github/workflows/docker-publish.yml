@@ -38,17 +38,35 @@ jobs:
     needs: setup
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
         with:
           driver: docker-container
-          
+
       - name: Restore cache
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
           key: ${{ needs.setup.outputs.cache-key }}
-          
+
+      - name: Build image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: |
+            ${{ github.ref == 'refs/heads/master' && format('ghcr.io/{0}:master', github.repository) || '' }}
+            ${{ github.ref == 'refs/heads/dev' && format('ghcr.io/{0}:dev', github.repository) || '' }}
+          outputs: type=docker,dest=/tmp/myimage.tar
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: docker-image
+          path: /tmp/myimage.tar
 
   push:
     needs: [setup, build]
