@@ -46,7 +46,7 @@ jobs:
         with:
             registry: ghcr.io
             username: ${{ github.actor }}
-            password: ${{ secrets.PAT_TOKEN }}  # Replace GITHUB_TOKEN with PAT_TOKEN
+            password: ${{ github.token }}  # Replace GITHUB_TOKEN with PAT_TOKEN
         
    
       - name: Cache Docker layers
