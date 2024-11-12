@@ -42,13 +42,13 @@ jobs:
           fi
 
       - name: Log in to GitHub Container Registry
-        if: github.event_name != 'pull_request'
         uses: docker/login-action@v3
         with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.PAT_TOKEN }}  # Replace GITHUB_TOKEN with PAT_TOKEN
+        
+   
       - name: Cache Docker layers
         uses: actions/cache@v3
         with:
@@ -60,17 +60,17 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: .
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: |
-            ${{ github.ref == 'refs/heads/master' && format('ghcr.io/{0}:master', github.repository) || '' }}
-            ${{ github.ref == 'refs/heads/dev' && format('ghcr.io/{0}:dev', github.repository) || '' }}
-            ${{ !startsWith(github.ref, 'refs/heads/') && format('ghcr.io/{0}:{1}', github.repository, github.sha) || '' }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-          build-args: |
-            BUILDKIT_INLINE_CACHE=1
-            NODE_ENV=production
+            context: .
+            push: true  # Since we removed PR trigger, we can always push
+            tags: |
+              ${{ github.ref == 'refs/heads/master' && format('ghcr.io/{0}:master', github.repository) || '' }}
+              ${{ github.ref == 'refs/heads/dev' && format('ghcr.io/{0}:dev', github.repository) || '' }}
+
+            cache-from: type=local,src=/tmp/.buildx-cache
+            cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
+            build-args: |
+             BUILDKIT_INLINE_CACHE=1
+             NODE_ENV=production
 
       - name: Move cache
         run: |
