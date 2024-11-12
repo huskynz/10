@@ -1,6 +1,10 @@
 name: Clean up old packages
 
 on:
+  push:
+    branches:
+      - master
+      - dev
   schedule:
     - cron: '0 0 * * 0'
   workflow_dispatch:
