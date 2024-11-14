@@ -8,6 +8,8 @@ import MeteorShower from "@components/MeteorShower.astro"
 import Twitch from "@components/TwitchEmbed.astro"
 import GitHubActivity from "@components/GitHubActivity.astro"
 import ContactForm from '@components/ContactForm.astro';
+import StatusWidget from "@components/status-widget.astro"
+import ArrowCard from "@components/ArrowCard.tsx"
 
 
 
@@ -123,11 +125,13 @@ phClient.capture(
             <TimelineSkills />
           </section>
           --> 
+          <section class="animate flex justify-center items-center w-full">
+            <StatusWidget />
+          </section>
           <!-- Twitch Embed, Displays message when offline - Reanable later -->
           <section id="contact" class="animate">
             <Twitch />
             </section>
-
       <!-- Contact Section -->
       <section id="contact" class="animate scroll-mt-32">
         <div>
@@ -165,7 +169,7 @@ phClient.capture(
           <ContactForm />
         </div>
       </section>
-      <!-- Blog Preview Section
+      <!-- Blog Preview Section-->
       <section class="animate">
         <div class="space-y-4">
           <div class="flex justify-between">
@@ -187,7 +191,7 @@ phClient.capture(
           </ul>
         </div>
       </section>
-     -->
+     
     </div>
   </div>
 
