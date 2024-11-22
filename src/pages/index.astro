@@ -29,7 +29,7 @@ const phClient = PostHogClient();
 phClient.capture(
     {
         event: 'Index Page View', 
-        distinctId: 'There is a new visitor from --> ' + Astro.clientAddress + 'There user agent is --> ' +  uaString//import.meta.env.DID,
+        distinctId: 'There is/was a new visitor from --> ' + Astro.clientAddress + 'There user agent is --> ' +  uaString//import.meta.env.DID,
     }
 );
 
