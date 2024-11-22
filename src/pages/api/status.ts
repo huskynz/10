@@ -1,4 +1,4 @@
-export const GET = async ({ params, request }) => {
+export const GET = async ({ params, request }: { params: any, request: Request }) => {
     return new Response(JSON.stringify([
       '⢦⠱⢌⠦⠱⡌⠦⡱⠌⢦⠱⢌⠦⠱⡌⢦⠱⡘⢤⠓⡌⢦⡑⢎⠴⡡⠎⢦⡑⢎⠴⠱⣌⠲⣡⠚⡤⢓⡌⢲⠡⢎⠴⢡⠎⠴⣁⠦⡑⢢⠜⡐⣂⠲⡐⢂⠒⡐⢂⠆⡐⢢⠐⡄⢢⠐⡄⠢⢐⡀⠢⠐⡀⢂⠄⠂⠄⠠⡀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠⠀⠄⠠ . . . . \
       ⢦⡉⠖⣌⠓⡬⢑⠦⡙⢢⢍⠲⢌⡓⡸⢄⢣⡙⢢⡙⡸⢰⡘⣌⠲⣡⠋⢖⡸⠌⣎⠱⣂⠳⣄⠫⢔⠣⡜⣡⢋⡜⡘⢆⢎⡱⢂⠖⣉⠆⢎⠱⡀⢇⡘⢌⠱⡈⢆⡘⢄⠣⢌⡐⠢⢌⠠⡑⠂⠤⢁⠡⢂⠡⠈⠔⡈⠡⠐⡈⠄⠡⠈⠄⠡⠈⠄⠡⠈⠄⠡⠈⠄⠡⠈⠄⠡⢈⠐⡀\
