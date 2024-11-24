@@ -13,7 +13,7 @@ const isValidLink = allowedLinks.includes(linkName);
 <PageLayout title={isValidLink ? "Link Not Valid" : "Invalid Link"} description={SITE.DESCRIPTION}>
   <!-- Invalid Link Section -->
   <section class="relative bg-white dark:bg-black py-16">
-    <div class="mx-auto max-w-screen-md p-5 space-y-6 text-center">
+    <div class="mx-auto max-w-(--breakpoint-md) p-5 space-y-6 text-center">
       <h1 class="text-4xl font-bold text-black dark:text-white">
         {isValidLink ? "Link Not Valid" : "Invalid Link"}
       </h1>
@@ -37,7 +37,7 @@ const isValidLink = allowedLinks.includes(linkName);
       )}
       <a
         href="/"
-        class="py-3 px-6 bg-white hover:bg-gray-200 text-black border border-black rounded inline-block"
+        class="py-3 px-6 bg-white hover:bg-gray-200 text-black border border-black rounded-sm inline-block"
       >
         Back to Home
       </a>

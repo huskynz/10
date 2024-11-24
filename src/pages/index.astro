@@ -64,9 +64,9 @@ phClient.capture(
   <!-- HERO -->
   <section class="relative h-screen w-full">
     <div id="planetcont" class='animate absolute inset-0 top-1/4 overflow-hidden'>
-      <div id="crescent" class='absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-gradient-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%'>
+      <div id="crescent" class='absolute top-0 left-1/2 -translate-x-1/2 w-[250vw] min-h-[100vh] aspect-square rounded-full p-[1px] bg-linear-to-b from-black/25 dark:from-white/75 from-0% to-transparent to-5%'>
         <div id="planet" class='w-full h-full bg-white dark:bg-black rounded-full p-[1px] overflow-hidden flex justify-center'>
-          <div id="blur" class='w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl'/>
+          <div id="blur-sm" class='w-full h-20 rounded-full bg-neutral-900/25 dark:bg-white/25 blur-3xl'/>
         </div>
       </div>
     </div>
@@ -83,13 +83,13 @@ phClient.capture(
             A Solutions Architect
           </p>
           <div id="ctaButtons" class='animated flex flex-wrap gap-4 justify-center mt-5'>
-            <a href='#contact' class='py-2 px-4 rounded truncate text-xs text-center md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
+            <a href='#contact' class='py-2 px-4 rounded-sm truncate text-xs text-center md:text-sm lg:text-base bg-black dark:bg-white text-white dark:text-black hover:opacity-75 blend'>
               Lets Connect
             </a>
-            <a href='/work' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+            <a href='/work' class='py-2 px-4 truncate rounded-sm text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 dark:hover:bg-white/15 blend'>
               View my work and projects
             </a>
-           <!-- Enable this at a later date <a href='/blog' class='py-2 px-4 truncate rounded text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 hover:dark:bg-white/15 blend'>
+           <!-- Enable this at a later date <a href='/blog' class='py-2 px-4 truncate rounded-sm text-xs md:text-sm lg:text-base border border-black/25 dark:border-white/25 hover:bg-black/5 dark:hover:bg-white/15 blend'>
               Read my blog
             </a>-->
           </div>
@@ -98,7 +98,7 @@ phClient.capture(
     </div>
   </section>
   <div class="relative bg-white dark:bg-black">
-    <div class="mx-auto max-w-screen-sm p-5 space-y-24 pb-16">
+    <div class="mx-auto max-w-(--breakpoint-sm) p-5 space-y-24 pb-16">
       <!-- About Section -->
       <section class="animate">
         <article>
@@ -129,7 +129,7 @@ phClient.capture(
               Recent posts
             </p>
             <a href="/blog" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-              <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+              <span class="text-black/75 dark:text-white/75 group-hover:text-black dark:group-hover:text-white blend">
                 All posts from me
               </span>
             </a>
@@ -168,7 +168,7 @@ phClient.capture(
               </div>
               <div class="col-span-3 truncate">
                 <a href={social.HREF} target="_blank" class="w-fit col-span-3 group flex gap-1 items-center underline decoration-[.5px] decoration-black/25 dark:decoration-white/50 hover:decoration-black dark:hover:decoration-white text-black dark:text-white underline-offset-2 blend">
-                  <span class="text-black/75 dark:text-white/75 group-hover:text-black group-hover:dark:text-white blend">
+                  <span class="text-black/75 dark:text-white/75 group-hover:text-black dark:group-hover:text-white blend">
                     {social.TEXT}
                   </span>
                 </a>
