@@ -2,6 +2,7 @@ interface TurnstileWindow extends Window {
   turnstile: {
     render: (container: string | HTMLElement, options: any) => string;
     reset: (widgetId?: string) => void;
+    getResponse: (widgetId?: string) => string | null;
   };
 }
 
@@ -69,15 +70,19 @@ function updateCharacterCount(textarea: HTMLTextAreaElement, charCount: HTMLElem
 
 export function initializeContactForm(turnsiteSiteKey: string): void {
   const form = document.getElementById('contactForm') as HTMLFormElement;
-  const statusDiv = document.getElementById('formStatus') as HTMLDivElement;
-  const statusText = statusDiv.querySelector('p') as HTMLParagraphElement;
-  const textarea = document.getElementById('message') as HTMLTextAreaElement;
-  const charCount = document.getElementById('charCount') as HTMLElement;
-  const emailInput = document.querySelector('input[name="email"]') as HTMLInputElement;
+  const nameInput = document.getElementById('name') as HTMLInputElement;
   const emailMessage = document.getElementById('emailMessage') as HTMLDivElement;
-  const nameInput = document.querySelector('input[name="name"]') as HTMLInputElement;
-
+  const statusDiv = document.getElementById('statusDiv') as HTMLDivElement;
+  const statusText = document.getElementById('statusText') as HTMLParagraphElement;
   let turnstileWidget: string;
+
+  // Initialize Turnstile only when it's available
+  if (window.turnstile) {
+    turnstileWidget = window.turnstile.render('#turnstile-widget', {
+      sitekey: turnsiteSiteKey,
+      theme: 'auto',
+    });
+  }
 
   // Reset form on page load/refresh
   window.addEventListener('load', () => {
@@ -123,24 +128,31 @@ export function initializeContactForm(turnsiteSiteKey: string): void {
     }
   });
 
-  // Initialize Turnstile
-  turnstileWidget = (window as unknown as TurnstileWindow).turnstile.render(
-    '#turnstile-widget',
-    {
-      sitekey: turnsiteSiteKey,
-      theme: 'auto',
-    }
-  );
-
   // Form submission
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const formData = new FormData(form);
+    const turnstileToken = (window as unknown as TurnstileWindow).turnstile.getResponse(turnstileWidget);
     
+    if (!turnstileToken) {
+      statusDiv.classList.remove('hidden');
+      statusText.textContent = 'Please complete the captcha';
+      statusText.classList.add('text-red-500');
+      return;
+    }
+
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch('/api/send-email', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.get('name'),
+          email: formData.get('email'),
+          message: formData.get('message'),
+          turnstileToken
+        }),
       });
 
       const result = await response.json();
@@ -157,6 +169,7 @@ export function initializeContactForm(turnsiteSiteKey: string): void {
     } catch (error) {
       statusDiv.classList.remove('hidden');
       statusText.textContent = error instanceof Error ? error.message : 'An error occurred';
+      statusText.classList.remove('text-green-500');
       statusText.classList.add('text-red-500');
     }
   });
