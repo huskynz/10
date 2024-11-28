@@ -14,13 +14,13 @@
     "jsxImportSource": "react"
   },
   "include": [
+  ],
+  "exclude": [
+    "dist",
+    "node_modules",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.astro",
     "src/components/quoutes.jsx"
-  ],
-  "exclude": [
-    "dist",
-    "node_modules"
   ]
 }
