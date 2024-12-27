@@ -6,15 +6,15 @@ ENV PUPPETEER_SKIP_DOWNLOAD=TRUE
 # Install any needed system dependencies for the build
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    python3 \
     build-essential && \
     rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
-RUN npm install -g yarn@4.5.3
+RUN corepack enable
+RUN yarn set version berry
 RUN yarn --version
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install --immutable
 
 # Build the app
 COPY . .
