@@ -12,7 +12,7 @@ RUN apt-get update && \
 
 # Install dependencies
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 # Build the app
 COPY . .
