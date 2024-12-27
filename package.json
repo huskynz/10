@@ -15,15 +15,16 @@
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org huskynz --project javascript ./dist && sentry-cli sourcemaps upload --org huskynz --project javascript ./dist"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.6",
-    "@astrojs/mdx": "^2.1.1",
-    "@astrojs/netlify": "^5.5.0",
-    "@astrojs/node": "^8.3.3",
-    "@astrojs/react": "^3.6.2",
-    "@astrojs/rss": "^4.0.5",
-    "@astrojs/sitemap": "^3.1.1",
-    "@astrojs/solid-js": "^4.0.1",
-    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/check": "0.9.4",
+    "@astrojs/mdx": "4.0.3",
+    "@astrojs/netlify": "6.0.1",
+    "@astrojs/node": "9.0.0",
+    "@astrojs/react": "4.1.2",
+    "@astrojs/rss": "4.0.10",
+    "@astrojs/sitemap": "3.2.1",
+    "@astrojs/solid-js": "5.0.1",
+    "@astrojs/tailwind": "5.1.4",
+    "@astrojs/upgrade": "^0.4.2",
     "@aws-sdk/client-s3": "^3.679.0",
     "@azure/cosmos": "^4.1.1",
     "@azure/storage-blob": "^12.24.0",
@@ -32,7 +33,7 @@
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
-    "astro": "^4.4.13",
+    "astro": "5.1.1",
     "astro-diagram": "^0.7.0",
     "astro-useragent": "^4.0.2",
     "aws-sdk": "^2.1691.0",
@@ -59,5 +60,6 @@
   },
   "devDependencies": {
     "jest": "^29.7.0"
-  }
+  },
+  "packageManager": "yarn@4.5.3"
 }
