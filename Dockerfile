@@ -14,8 +14,7 @@ RUN corepack enable
 RUN yarn set version berry
 RUN yarn --version
 COPY package.json yarn.lock ./
-RUN yarn install --immutable
-
+RUN yarn install
 # Build the app
 COPY . .
 RUN mv astro.config.mjs.docker astro.config.mjs && \
