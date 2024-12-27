@@ -22,12 +22,6 @@ jobs:
             network=host
           buildkitd-flags: --debug
 
-      - name: Install Yarn 4.5.3
-        run: |
-          corepack enable
-          corepack prepare yarn@4.5.3 --activate
-          yarn --version
-
       - name: Generate cache key
         id: cache-key
         run: echo "key=${{ runner.os }}-buildx-${{ hashFiles('**/yarn.lock') }}" >> $GITHUB_OUTPUT
@@ -46,12 +40,6 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Install Yarn 4.5.3
-        run: |
-          corepack enable
-          corepack prepare yarn@4.5.3 --activate
-          yarn --version
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

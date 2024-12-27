@@ -11,6 +11,8 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Install dependencies
+RUN npm install -g yarn@4.5.3
+RUN yarn --version
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
