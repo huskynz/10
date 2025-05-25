@@ -31,13 +31,13 @@ tags:
 #### Infortrend S16E-G1130
 * Toshiba 500gb SATA drive
 * Seagate Barracuda 200gb SATA drive
-* IBM 600gb SAS drive
+* IBM 600gb SAS drives x4
 
 ### Hypervisor
 
 ESXI 8 + Vcenter 8
 
-### What I am Labbing?
+### What am I Labbing?
 
   * Ciritx Workspace And Desktop
   * Netscaler
