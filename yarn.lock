@@ -73,13 +73,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/internal-helpers@npm:0.4.1":
-  version: 0.4.1
-  resolution: "@astrojs/internal-helpers@npm:0.4.1"
-  checksum: 10c0/1545eb29994b8bf1dfa95d953f7fb23b52c1e1a3daefc2f39c032b2b0ff1bad5dde8ac7b2694d1f0c9f8f52f8d1f2d645c7e88969bca392fc22058674192b070
-  languageName: node
-  linkType: hard
-
 "@astrojs/internal-helpers@npm:0.4.2":
   version: 0.4.2
   resolution: "@astrojs/internal-helpers@npm:0.4.2"
@@ -150,9 +143,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/mdx@npm:4.0.3":
-  version: 4.0.3
-  resolution: "@astrojs/mdx@npm:4.0.3"
+"@astrojs/mdx@npm:4.0.5":
+  version: 4.0.5
+  resolution: "@astrojs/mdx@npm:4.0.5"
   dependencies:
     "@astrojs/markdown-remark": "npm:6.0.1"
     "@mdx-js/mdx": "npm:^3.1.0"
@@ -169,35 +162,35 @@ __metadata:
     vfile: "npm:^6.0.3"
   peerDependencies:
     astro: ^5.0.0
-  checksum: 10c0/14b0ae91a12620bc0858571e398e6080ac5f56f0a2857f1e96a387befc58d560ea25462e91544bf4709767c8e67534cc4d4a91501b21d53a0b9743ac92c1f54e
+  checksum: 10c0/503fb44ff279367f6b8fb41c584609b8dd14544bd5175297189b877211b3e25ae71156a1343df7999726b6f69302e2bd26b61276808a18293aba228c1764037c
   languageName: node
   linkType: hard
 
-"@astrojs/netlify@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@astrojs/netlify@npm:6.0.1"
+"@astrojs/netlify@npm:6.1.0":
+  version: 6.1.0
+  resolution: "@astrojs/netlify@npm:6.1.0"
   dependencies:
-    "@astrojs/internal-helpers": "npm:0.4.1"
-    "@astrojs/underscore-redirects": "npm:^0.4.0-alpha.0"
+    "@astrojs/internal-helpers": "npm:0.4.2"
+    "@astrojs/underscore-redirects": "npm:^0.6.0"
     "@netlify/functions": "npm:^2.8.0"
-    "@vercel/nft": "npm:^0.27.6"
+    "@vercel/nft": "npm:^0.29.0"
     esbuild: "npm:^0.24.0"
-    vite: "npm:^6.0.2"
+    vite: "npm:^6.0.7"
   peerDependencies:
     astro: ^5.0.0
-  checksum: 10c0/61102ad31e4a4ec0dfc9f1fe25a9fdcd7b674e735e082c37a8454cf4df8005a0cb202f091614eb7eafe712c4618051e638c0ef7602c9eab19f323d7bc27f3d29
+  checksum: 10c0/cf886130b34bef9da53bbcf772794ed1c66007dac34a1de66b10415957e52c4e337f858a668c0112fef460c61741586f6e05f8a037326ee921674b65659e693b
   languageName: node
   linkType: hard
 
-"@astrojs/node@npm:9.0.0":
-  version: 9.0.0
-  resolution: "@astrojs/node@npm:9.0.0"
+"@astrojs/node@npm:9.0.1":
+  version: 9.0.1
+  resolution: "@astrojs/node@npm:9.0.1"
   dependencies:
     send: "npm:^1.1.0"
     server-destroy: "npm:^1.0.1"
   peerDependencies:
     astro: ^5.0.0
-  checksum: 10c0/fe347fc034e4601da9d9e4488d7f92b399084162d325a8dfc5d7f251b22e7187379e0554f477d980ed4931de14c4cd38f0120aac48739ae004a846c7dfb34cb2
+  checksum: 10c0/586a143a7063b6f1c353ee77e9cb1e98405d7b37097ca3a6fb17b11135182c7347ea119a06bd5ce7c1b9b69de25a5763bbdb8c51c7a369f0cff76ce175e9661f
   languageName: node
   linkType: hard
 
@@ -210,9 +203,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/react@npm:4.1.2":
-  version: 4.1.2
-  resolution: "@astrojs/react@npm:4.1.2"
+"@astrojs/react@npm:4.1.4":
+  version: 4.1.4
+  resolution: "@astrojs/react@npm:4.1.4"
   dependencies:
     "@vitejs/plugin-react": "npm:^4.3.4"
     ultrahtml: "npm:^1.5.3"
@@ -222,17 +215,17 @@ __metadata:
     "@types/react-dom": ^17.0.17 || ^18.0.6 || ^19.0.0
     react: ^17.0.2 || ^18.0.0 || ^19.0.0
     react-dom: ^17.0.2 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/8e3902928a8c6f5c95d65725a82f5f26ae48d7ef6876988b0a6df06b1a201a46a617a6722773eda75069bba016e2a43fb8a4bd02dc3cbd2f636b20b0cbf9732e
+  checksum: 10c0/d9227670be2155a0eee67ac992f702c33ee01e6f4c66656936b20810115e1d6016dda49fb09005c56c6127a1fab982ab776a09494a56336fa350ddc1ad5effc1
   languageName: node
   linkType: hard
 
-"@astrojs/rss@npm:4.0.10":
-  version: 4.0.10
-  resolution: "@astrojs/rss@npm:4.0.10"
+"@astrojs/rss@npm:4.0.11":
+  version: 4.0.11
+  resolution: "@astrojs/rss@npm:4.0.11"
   dependencies:
     fast-xml-parser: "npm:^4.5.0"
     kleur: "npm:^4.1.5"
-  checksum: 10c0/df68ca96fb369c672caa82aea2afac6684112a0280a6e1ccafc796bae0944d58ac8006e8d2505cb7fc0f78c4d705a7fdbcc9edc211267b2d2a0be7d09d65b1c3
+  checksum: 10c0/9ac4ec0801eb356d150c5259bc53dcaecb011f87261a347ad7bfc61931f5a330a3013e29ef04cccae0c39906c0881d3e361f5e38d2d5bb5833d6f395ad52b7cc
   languageName: node
   linkType: hard
 
@@ -247,9 +240,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/solid-js@npm:5.0.1":
-  version: 5.0.1
-  resolution: "@astrojs/solid-js@npm:5.0.1"
+"@astrojs/solid-js@npm:5.0.2":
+  version: 5.0.2
+  resolution: "@astrojs/solid-js@npm:5.0.2"
   dependencies:
     vite: "npm:^6.0.5"
     vite-plugin-solid: "npm:^2.11.0"
@@ -259,7 +252,7 @@ __metadata:
   peerDependenciesMeta:
     solid-devtools:
       optional: true
-  checksum: 10c0/c0e2420394c6a5967e32baf8713fba6ae0738991131f2ffc73081b399cbc385880117ac08a9f7f47245d1ff234580f3356f3b56bbc7d0c4a878625bbaebd8733
+  checksum: 10c0/397be30bc1c6cd27218f5c451da2196e02312cf9adaec48c5a2c1807a970cf92abe38069deee3b1f5324c9a5fc01e88d1da8afadb86e9e343ea33fa2200cb9eb
   languageName: node
   linkType: hard
 
@@ -292,10 +285,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@astrojs/underscore-redirects@npm:^0.4.0-alpha.0":
-  version: 0.4.0
-  resolution: "@astrojs/underscore-redirects@npm:0.4.0"
-  checksum: 10c0/64c39489e327a6a2db2e33814ee77b06273c2d45157cc458a44feeab9f85ea8de76c9cb646a2e99a3c29717caf47392df29cf88d8b8ba223909ca47ed29c8721
+"@astrojs/underscore-redirects@npm:^0.6.0":
+  version: 0.6.0
+  resolution: "@astrojs/underscore-redirects@npm:0.6.0"
+  checksum: 10c0/fe1895e3a6fa38b246bd9b793b203e590ee52fc426892802cfcd8e1d7d3ef181c919412f664de946ef940b6d0c758473c45997d0cb60cfaf3c95a5e086d1ad3e
   languageName: node
   linkType: hard
 
@@ -4392,9 +4385,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/nft@npm:^0.27.6":
-  version: 0.27.10
-  resolution: "@vercel/nft@npm:0.27.10"
+"@vercel/nft@npm:^0.29.0":
+  version: 0.29.0
+  resolution: "@vercel/nft@npm:0.29.0"
   dependencies:
     "@mapbox/node-pre-gyp": "npm:^2.0.0-rc.0"
     "@rollup/pluginutils": "npm:^5.1.3"
@@ -4410,7 +4403,7 @@ __metadata:
     resolve-from: "npm:^5.0.0"
   bin:
     nft: out/cli.js
-  checksum: 10c0/8fec187317d8e390e00f5cacc07839add40a67977dfce2edab0844b51821d012bb807d692c08b0ede03e767e735fb592e6c71d6dd2379ba4dc298a96df09e3d6
+  checksum: 10c0/cd77071e70dbb3cd28626dc2b60e3e1ec6e1a7723a2a6f3b82c68198aaf949587d6cea6e1b5589f7f7fb0c07faddb51cf5903c69df3393ad4a371dc618fceff6
   languageName: node
   linkType: hard
 
@@ -4756,9 +4749,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"astro@npm:5.1.1":
-  version: 5.1.1
-  resolution: "astro@npm:5.1.1"
+"astro@npm:5.1.6":
+  version: 5.1.6
+  resolution: "astro@npm:5.1.6"
   dependencies:
     "@astrojs/compiler": "npm:^2.10.3"
     "@astrojs/internal-helpers": "npm:0.4.2"
@@ -4825,7 +4818,7 @@ __metadata:
       optional: true
   bin:
     astro: astro.js
-  checksum: 10c0/c4b65e1d1cbe2a3aad06ce9afa0476626b0b5321db35c98f61c506ca64d4ebe61fc43fb11ff44a35d8e7268c2cd5b47421366543016c060119370550b72b4ed6
+  checksum: 10c0/2f3071e8f61e1925f2d4485da77fef56eb2692a353af39f485786c17046728bb6c884c23efd2c62090602e4153d991721fb9efc5fdd17702a5bd46e4ac01f3c2
   languageName: node
   linkType: hard
 
@@ -8014,13 +8007,13 @@ __metadata:
   resolution: "huskynz-v10@workspace:."
   dependencies:
     "@astrojs/check": "npm:0.9.4"
-    "@astrojs/mdx": "npm:4.0.3"
-    "@astrojs/netlify": "npm:6.0.1"
-    "@astrojs/node": "npm:9.0.0"
-    "@astrojs/react": "npm:4.1.2"
-    "@astrojs/rss": "npm:4.0.10"
+    "@astrojs/mdx": "npm:4.0.5"
+    "@astrojs/netlify": "npm:6.1.0"
+    "@astrojs/node": "npm:9.0.1"
+    "@astrojs/react": "npm:4.1.4"
+    "@astrojs/rss": "npm:4.0.11"
     "@astrojs/sitemap": "npm:3.2.1"
-    "@astrojs/solid-js": "npm:5.0.1"
+    "@astrojs/solid-js": "npm:5.0.2"
     "@astrojs/tailwind": "npm:5.1.4"
     "@astrojs/upgrade": "npm:^0.4.2"
     "@aws-sdk/client-s3": "npm:^3.679.0"
@@ -8031,7 +8024,7 @@ __metadata:
     "@types/nodemailer": "npm:^6.4.15"
     "@types/react": "npm:^18.3.12"
     "@types/react-dom": "npm:^18.3.1"
-    astro: "npm:5.1.1"
+    astro: "npm:5.1.6"
     astro-diagram: "npm:^0.7.0"
     astro-useragent: "npm:^4.0.2"
     aws-sdk: "npm:^2.1691.0"
@@ -13572,7 +13565,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^6.0.2, vite@npm:^6.0.5":
+"vite@npm:^6.0.5":
   version: 6.0.6
   resolution: "vite@npm:6.0.6"
   dependencies:
@@ -13621,6 +13614,58 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 10c0/144c3f80a7920a4b2fa14f00f99b58ece246455ca9313561a67a227b45dadac3343e406d3c1dbfafa79992ac88f54cb2b040b229997e432daf47594fe8cacec2
+  languageName: node
+  linkType: hard
+
+"vite@npm:^6.0.7":
+  version: 6.0.7
+  resolution: "vite@npm:6.0.7"
+  dependencies:
+    esbuild: "npm:^0.24.2"
+    fsevents: "npm:~2.3.3"
+    postcss: "npm:^8.4.49"
+    rollup: "npm:^4.23.0"
+  peerDependencies:
+    "@types/node": ^18.0.0 || ^20.0.0 || >=22.0.0
+    jiti: ">=1.21.0"
+    less: "*"
+    lightningcss: ^1.21.0
+    sass: "*"
+    sass-embedded: "*"
+    stylus: "*"
+    sugarss: "*"
+    terser: ^5.16.0
+    tsx: ^4.8.1
+    yaml: ^2.4.2
+  dependenciesMeta:
+    fsevents:
+      optional: true
+  peerDependenciesMeta:
+    "@types/node":
+      optional: true
+    jiti:
+      optional: true
+    less:
+      optional: true
+    lightningcss:
+      optional: true
+    sass:
+      optional: true
+    sass-embedded:
+      optional: true
+    stylus:
+      optional: true
+    sugarss:
+      optional: true
+    terser:
+      optional: true
+    tsx:
+      optional: true
+    yaml:
+      optional: true
+  bin:
+    vite: bin/vite.js
+  checksum: 10c0/ae81047b4290a7206b9394a39a782d509e9610462e7946422ba22d5bc615b5a322c07e33d7bf9dd0b3312ec3f5c63353b725913d1519324bfdf539b4f1e03f52
   languageName: node
   linkType: hard
 
