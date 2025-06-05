@@ -25,7 +25,7 @@ RUN mv astro.config.mjs.docker astro.config.mjs && \
 FROM node:20.11-slim AS runtime
 WORKDIR /app
 ENV HOST=0.0.0.0 \
-    PORT=4321 \
+    PORT=4322 \
     NODE_ENV=production
 
 # Copy build artifacts and dependencies
@@ -40,5 +40,5 @@ RUN addgroup --system --gid 1001 nodejs && \
 
 USER nodejs
 
-EXPOSE 4321
+EXPOSE 4322
 CMD ["node", "./dist/server/entry.mjs"]
