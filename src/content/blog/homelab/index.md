@@ -2,7 +2,7 @@
 title: "My Homelab"
 summary: "An overview of my LAB"
 date: "May 25 2025"
-draft: false
+draft: true
 tags:
 - HomeLab
 ---
