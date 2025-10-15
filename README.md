@@ -4,7 +4,7 @@
     <img src="https://serv.hnz.li/logo/default.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">HuskyNZ's Main Site</h3>
+  <h3 align="center">This project is depracated</h3>
   <br>
 
 </p>
